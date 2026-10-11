@@ -1,0 +1,103 @@
+{
+  "ticket_id": "TCK-1020",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0632108,
+    "duration_ms": 12042,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4429,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1366,
+      "output_tokens_details": {
+        "thinking_tokens": 455
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1366,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What are the options when nearing the 500-document limit on the Professional plan?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Professional caps a workspace at 500 knowledge documents.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB"
+      },
+      {
+        "claim": "Professional caps Knowledge Data Storage at 5 GB.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Professional | ... | 500 | 5 GB"
+      },
+      {
+        "claim": "Upgrading to Team raises the limit to 1,000 documents and 20 GB.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Team | $159/workspace/month ($1,590/year) | 10,000 credits/month | 50 | 200 | 1,000 | 20 GB"
+      },
+      {
+        "claim": "Enterprise involves sales, so sales can be looped in.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Enterprise pricing and feature scope are negotiated directly with Dify's sales team rather than published"
+      },
+      {
+        "claim": "Enterprise doesn't have a fixed cap.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Enterprise | Custom (contact sales) | Custom | Custom | Custom | Custom | Custom"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "overstatement"
+    ],
+    "rationale": "The Professional and Team limits in the answer match the guide's plan table, and pointing Grace to sales for Enterprise fits the guide's \"contact sales\" wording. Saying Enterprise \"doesn't have a fixed cap\" is a slight stretch: the guide only says Enterprise limits are \"Custom\" and negotiated, which a customer could misread as unlimited. The answer also leaves out the other option the guide supports, which is reducing usage back under the limit."
+  }
+}

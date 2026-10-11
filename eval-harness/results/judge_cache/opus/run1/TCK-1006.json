@@ -1,0 +1,118 @@
+{
+  "ticket_id": "TCK-1006",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0653748,
+    "duration_ms": 12943,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4522,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1437,
+      "output_tokens_details": {
+        "thinking_tokens": 334
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4522,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1437,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4522,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4522
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why are the Sandbox app's API calls suddenly failing with rate limit errors?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Does upgrading to the Team plan provide SSO for 40 members using company SSO?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Sandbox workspaces are capped at 5,000 API calls per month.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Sandbox | Free | ... | 5,000 calls/month"
+      },
+      {
+        "claim": "The rate limit errors are likely caused by hitting the Sandbox monthly API call ceiling.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "Sandbox | Free | 200 credits, one-time (does not renew) | 1 | 5 | 50 | 50 MB | 5,000 calls/month"
+      },
+      {
+        "claim": "Professional and Team plans remove the Dify-imposed API cap.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "No Dify-imposed API rate limit"
+      },
+      {
+        "claim": "The Team plan costs $159/month.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Team | $159/workspace/month ($1,590/year)"
+      },
+      {
+        "claim": "Upgrading to the Team plan gives the workspace single sign-on support for all members.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "Enterprise is a separately sold, typically self-hosted or VPC-deployed product line for organizations that need capabilities beyond what any Cloud tier offers, such as single sign-on"
+      },
+      {
+        "claim": "The 40 users would be able to log in with company SSO right away after the upgrade.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "capabilities beyond what any Cloud tier offers, such as single sign-on"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": true,
+      "assessment": "missing_escalation"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_entitlement",
+      "contradicts_guide",
+      "unsupported_commercial_claim",
+      "missed_premise_correction",
+      "missing_escalation"
+    ],
+    "rationale": "The rate-limit explanation is grounded: Sandbox caps API calls at 5,000 per month, and paid plans have no Dify-imposed limit. However, the answer says the Team plan includes SSO, but the guide lists single sign-on as an Enterprise capability \"beyond what any Cloud tier offers.\" That error could lead the customer to buy the wrong plan. The answer should have corrected this premise and sent the SSO question to Dify's Enterprise sales team."
+  }
+}

@@ -1,0 +1,341 @@
+{
+  "labels": {
+    "n": 26,
+    "severity_counts": {
+      "none": 16,
+      "minor": 4,
+      "major": 3,
+      "critical": 3
+    },
+    "blocking_ids": [
+      "TCK-1005",
+      "TCK-1006",
+      "TCK-1009",
+      "TCK-1012",
+      "TCK-1021",
+      "TCK-1023"
+    ],
+    "critical_ids": [
+      "TCK-1006",
+      "TCK-1009",
+      "TCK-1021"
+    ],
+    "blocking_rate": "6/26 (23%; 95% CI 11%\u201342%)",
+    "critical_rate": "3/26 (12%; 95% CI 4%\u201329%)",
+    "criteria_pass": {
+      "accurate": 22,
+      "grounded": 18,
+      "complete": 24,
+      "escalation_ok": 21,
+      "customer_safe": 25
+    },
+    "by_multi_part": [
+      [
+        "multi-part",
+        "2/3 (67%; 95% CI 21%\u201394%)"
+      ],
+      [
+        "single question",
+        "4/23 (17%; 95% CI 7%\u201337%)"
+      ]
+    ],
+    "by_coverage": [
+      [
+        "guide coverage: full",
+        "2/21 (10%; 95% CI 3%\u201329%)"
+      ],
+      [
+        "guide coverage: none",
+        "1/2 (50%; 95% CI 9%\u201391%)"
+      ],
+      [
+        "guide coverage: partial",
+        "3/3 (100%; 95% CI 44%\u2013100%)"
+      ]
+    ],
+    "by_category": [
+      [
+        "account_workspace",
+        "1/4 (25%; 95% CI 5%\u201370%)"
+      ],
+      [
+        "api_keys",
+        "1/4 (25%; 95% CI 5%\u201370%)"
+      ],
+      [
+        "billing_plans",
+        "2/7 (29%; 95% CI 8%\u201364%)"
+      ],
+      [
+        "model_providers",
+        "2/6 (33%; 95% CI 10%\u201370%)"
+      ],
+      [
+        "rag_pipeline",
+        "0/5 (0%; 95% CI 0%\u201343%)"
+      ]
+    ],
+    "failure_modes": [
+      [
+        "wrong_entitlement",
+        2
+      ],
+      [
+        "missing_escalation",
+        2
+      ],
+      [
+        "contradicts_guide",
+        2
+      ],
+      [
+        "unsupported_technical_detail",
+        1
+      ],
+      [
+        "invented_user_context",
+        1
+      ],
+      [
+        "unsupported_commercial_claim",
+        1
+      ],
+      [
+        "fabricated_ui_path",
+        1
+      ],
+      [
+        "overconfident_negative",
+        1
+      ],
+      [
+        "over_abstention",
+        1
+      ],
+      [
+        "missed_premise_correction",
+        1
+      ],
+      [
+        "overstatement",
+        1
+      ],
+      [
+        "wrong_root_cause",
+        1
+      ],
+      [
+        "system_error_leak",
+        1
+      ],
+      [
+        "no_clarification",
+        1
+      ]
+    ]
+  },
+  "judges": [
+    {
+      "model": "opus",
+      "run": 1,
+      "tp": 6,
+      "fn": 0,
+      "fp": 1,
+      "tn": 19,
+      "tpr": 1.0,
+      "tnr": 0.95,
+      "kappa": 0.8976377952755906,
+      "severity_exact": 0.7307692307692307,
+      "severity_wkappa": 0.7566844919786097,
+      "critical_as_critical": "3/3",
+      "mean_cost_usd": 0.06334129230769231,
+      "mean_seconds": 10.843115384615384
+    },
+    {
+      "model": "opus",
+      "run": 2,
+      "tp": 6,
+      "fn": 0,
+      "fp": 1,
+      "tn": 19,
+      "tpr": 1.0,
+      "tnr": 0.95,
+      "kappa": 0.8976377952755906,
+      "severity_exact": 0.6923076923076923,
+      "severity_wkappa": 0.7196765498652291,
+      "critical_as_critical": "3/3",
+      "mean_cost_usd": 0.02775566153846154,
+      "mean_seconds": 11.235807692307691
+    },
+    {
+      "model": "sonnet",
+      "run": 1,
+      "tp": 6,
+      "fn": 0,
+      "fp": 2,
+      "tn": 18,
+      "tpr": 1.0,
+      "tnr": 0.9,
+      "kappa": 0.8059701492537314,
+      "severity_exact": 0.7307692307692307,
+      "severity_wkappa": 0.7592592592592593,
+      "critical_as_critical": "3/3",
+      "mean_cost_usd": 0.03379542307692308,
+      "mean_seconds": 9.247153846153847
+    },
+    {
+      "model": "sonnet",
+      "run": 2,
+      "tp": 6,
+      "fn": 0,
+      "fp": 2,
+      "tn": 18,
+      "tpr": 1.0,
+      "tnr": 0.9,
+      "kappa": 0.8059701492537314,
+      "severity_exact": 0.6923076923076923,
+      "severity_wkappa": 0.7270341207349081,
+      "critical_as_critical": "3/3",
+      "mean_cost_usd": 0.015076815384615387,
+      "mean_seconds": 8.805307692307691
+    }
+  ],
+  "replay": [
+    {
+      "config": "C0",
+      "description": "No quality layer: every draft is sent",
+      "escaped_blocking": [
+        "TCK-1005",
+        "TCK-1006",
+        "TCK-1009",
+        "TCK-1012",
+        "TCK-1021",
+        "TCK-1023"
+      ],
+      "escaped_critical": [
+        "TCK-1006",
+        "TCK-1009",
+        "TCK-1021"
+      ],
+      "caught_blocking": "0/6",
+      "auto_sent": 26,
+      "auto_send_rate": 1.0,
+      "held_non_blocking": 0,
+      "judge_calls": 0
+    },
+    {
+      "config": "C1@25%",
+      "description": "DoorDash-faithful: tier-1 flags ~25% (tau=0.049); only flagged drafts reach the LLM judge",
+      "escaped_blocking": [
+        "TCK-1005",
+        "TCK-1006",
+        "TCK-1012",
+        "TCK-1023"
+      ],
+      "escaped_critical": [
+        "TCK-1006"
+      ],
+      "caught_blocking": "2/6",
+      "auto_sent": 23,
+      "auto_send_rate": 0.8846153846153846,
+      "held_non_blocking": 1,
+      "judge_calls": 6
+    },
+    {
+      "config": "C1@50%",
+      "description": "DoorDash-faithful: tier-1 flags ~50% (tau=0.075); only flagged drafts reach the LLM judge",
+      "escaped_blocking": [
+        "TCK-1012"
+      ],
+      "escaped_critical": [],
+      "caught_blocking": "5/6",
+      "auto_sent": 20,
+      "auto_send_rate": 0.7692307692307693,
+      "held_non_blocking": 1,
+      "judge_calls": 13
+    },
+    {
+      "config": "C1@75%",
+      "description": "DoorDash-faithful: tier-1 flags ~75% (tau=0.118); only flagged drafts reach the LLM judge",
+      "escaped_blocking": [],
+      "escaped_critical": [],
+      "caught_blocking": "6/6",
+      "auto_sent": 19,
+      "auto_send_rate": 0.7307692307692307,
+      "held_non_blocking": 1,
+      "judge_calls": 19
+    },
+    {
+      "config": "C2",
+      "description": "LLM judge on every draft",
+      "escaped_blocking": [],
+      "escaped_critical": [],
+      "caught_blocking": "6/6",
+      "auto_sent": 19,
+      "auto_send_rate": 0.7307692307692307,
+      "held_non_blocking": 1,
+      "judge_calls": 26
+    },
+    {
+      "config": "R-gen",
+      "description": "Generic deterministic rules only (no LLM)",
+      "escaped_blocking": [
+        "TCK-1005",
+        "TCK-1012"
+      ],
+      "escaped_critical": [],
+      "caught_blocking": "4/6",
+      "auto_sent": 19,
+      "auto_send_rate": 0.7307692307692307,
+      "held_non_blocking": 3,
+      "judge_calls": 0
+    },
+    {
+      "config": "C3-gen",
+      "description": "Recommended, without hindsight rules: generic input routing + generic output rules + judge on every non-routed draft",
+      "escaped_blocking": [],
+      "escaped_critical": [],
+      "caught_blocking": "6/6",
+      "auto_sent": 17,
+      "auto_send_rate": 0.6538461538461539,
+      "held_non_blocking": 3,
+      "judge_calls": 19
+    },
+    {
+      "config": "C3",
+      "description": "Recommended: C3-gen plus the regression rules",
+      "escaped_blocking": [],
+      "escaped_critical": [],
+      "caught_blocking": "6/6",
+      "auto_sent": 17,
+      "auto_send_rate": 0.6538461538461539,
+      "held_non_blocking": 3,
+      "judge_calls": 19
+    }
+  ],
+  "claim_profile_primary_judge": {
+    "commercial": {
+      "supported": 54,
+      "unsupported": 2,
+      "contradicted": 4
+    },
+    "customer_context": {
+      "unsupported": 2
+    },
+    "diagnostic": {
+      "supported": 5,
+      "unsupported": 1,
+      "contradicted": 1
+    },
+    "procedural": {
+      "unsupported": 9,
+      "supported": 22,
+      "contradicted": 1
+    },
+    "technical": {
+      "supported": 31,
+      "unsupported": 8,
+      "contradicted": 2
+    }
+  }
+}

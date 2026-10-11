@@ -1,0 +1,110 @@
+{
+  "ticket_id": "TCK-1019",
+  "model": "opus",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.029357400000000006,
+    "duration_ms": 11097,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 214,
+      "cache_read_input_tokens": 6487,
+      "output_tokens": 1317,
+      "output_tokens_details": {
+        "thinking_tokens": 417
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 214,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1317,
+          "cache_read_input_tokens": 6487,
+          "cache_creation_input_tokens": 214,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 214
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "After fixing a typo in an uploaded document, does the customer need to delete and re-upload it, or will it update automatically?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "There is no need to delete and re-upload the document after editing it.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "When a document is edited and saved, it is re-processed through these same four stages"
+      },
+      {
+        "claim": "The customer edited the document inside the Dify knowledge base, not in their local source file.",
+        "claim_type": "customer_context",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "An edited and saved document is automatically re-processed through parse, enrich, chunk and re-index before its chunks are available for retrieval again.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "it is re-processed through these same four stages before its chunks are available for retrieval again"
+      },
+      {
+        "claim": "The document's content is not fully searchable while it is reprocessing.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "a newly indexed document is not searchable mid-processing"
+      },
+      {
+        "claim": "Reprocessing takes only a short window.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "The customer should not test retrieval against the document until reprocessing finishes.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "a newly indexed document is not searchable mid-processing"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "unsupported_technical_detail",
+      "invented_user_context"
+    ],
+    "rationale": "The guide directly supports the main answer: a document that is edited and saved is re-processed through all four pipeline stages and is not searchable while that runs. The guide does not say how long reprocessing takes, so \"a short window\" is unsupported. The answer also assumes Beatriz fixed the typo inside Dify, but she may have fixed it in her local file, which the guide does not cover. Both issues are minor and harmless."
+  }
+}

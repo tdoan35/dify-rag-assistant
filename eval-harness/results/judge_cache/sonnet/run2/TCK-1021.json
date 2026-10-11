@@ -1,0 +1,119 @@
+{
+  "ticket_id": "TCK-1021",
+  "model": "sonnet",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.013535600000000002,
+    "duration_ms": 7202,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 6518,
+      "output_tokens": 1136,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 217,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1136,
+          "cache_read_input_tokens": 6518,
+          "cache_creation_input_tokens": 217,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 217
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How to connect/configure Anthropic as a model provider for the support bot",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Why is the workflow's retrieval step returning zero chunks for queries that used to work",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Verify the provider is configured under Settings > Model Provider with the API key saved.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Go to **Settings \u2192 Model Provider**, or open the **Marketplace** and filter by \"Models.\""
+      },
+      {
+        "claim": "The app's Model setting should point to an Anthropic model.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Save, then set that provider's model as the default (or per-app override) under the app's **Model** settings."
+      },
+      {
+        "claim": "The provider should show as 'active' in Settings > Model Provider.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "That (provider shows active, key saved, Model setting set) is all that's needed to connect Anthropic.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "Install the plugin for the desired provider (OpenAI, Anthropic, Azure OpenAI, and others are published officially"
+      },
+      {
+        "claim": "Zero-chunk retrieval is almost always caused by the new provider's API key not having fully propagated through the system.",
+        "claim_type": "diagnostic",
+        "verdict": "contradicted",
+        "guide_evidence": "A retrieval step that returns no results is most often explained by the score threshold being set too high, the document still being mid-indexing, or the query simply not matching any ingested content \u2014 not by an account or provider-propagation delay."
+      },
+      {
+        "claim": "Waiting about 24 hours will make retrieval results return on their own with no other changes.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": "not by an account or provider-propagation delay."
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Tells the customer to wait 24 hours for a fix that will not come, based on a root cause the guide explicitly rules out."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_root_cause",
+      "contradicts_guide",
+      "unsupported_technical_detail",
+      "fabricated_ui_path"
+    ],
+    "rationale": "The answer blames a provider-key propagation delay for zero-chunk retrieval, and the guide explicitly rules that out. It points to score threshold, mid-indexing documents, or non-matching queries, and to Hit Testing as a way to check. The customer would wait 24 hours for a fix that will not come. The Anthropic setup advice is partly right but omits the plugin install step and adds an unsupported \"active\" status and \"that's all that's needed\"."
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "ticket_id": "TCK-1009",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.027590800000000002,
+    "duration_ms": 6201,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4394,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 956,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4394,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 956,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4394,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4394
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Does Dify support SSO/SAML login for workspace members?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      },
+      {
+        "question": "How/on which plan can SSO be rolled out for the whole team?",
+        "addressed": true,
+        "guide_coverage": "none"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Dify supports SSO/SAML login for workspace members (answered 'Yes!').",
+        "claim_type": "technical",
+        "verdict": "contradicted",
+        "guide_evidence": "Enterprise is a separately sold, typically self-hosted or VPC-deployed product line for organizations that need capabilities beyond what any Cloud tier offers, such as single sign-on, detailed audit logging"
+      },
+      {
+        "claim": "SSO/SAML can be enabled from Settings > Security.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "SSO/SAML is available once the workspace is on the Team plan.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "capabilities beyond what any Cloud tier offers, such as single sign-on"
+      },
+      {
+        "claim": "Setup consists of providing the identity provider's metadata URL, after which members can log in through company SSO.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "It does not document Enterprise-only configuration (SSO/SAML setup, audit-log export formats, compliance certifications)"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": true,
+      "assessment": "missing_escalation"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Gives a confident but incorrect answer about plan entitlement and a fabricated setup path for a security feature, which the customer may act on."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_entitlement",
+      "contradicts_guide",
+      "fabricated_ui_path",
+      "unsupported_commercial_claim",
+      "unsupported_technical_detail",
+      "missing_escalation"
+    ],
+    "rationale": "The guide lists SSO as an Enterprise capability beyond any Cloud tier, so the claim that it is available on the Team plan is wrong. The Settings > Security path and metadata-URL setup are invented, since the guide says SSO/SAML setup isn't documented. The answer should have routed this security-team ticket to sales or the Enterprise specialist team. A customer could buy the wrong plan based on it."
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "ticket_id": "TCK-1003",
+  "model": "sonnet",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0210032,
+    "duration_ms": 11835,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 6566,
+      "output_tokens": 1881,
+      "output_tokens_details": {
+        "thinking_tokens": 741
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 219,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1881,
+          "cache_read_input_tokens": 6566,
+          "cache_creation_input_tokens": 219,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 219
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why does the account say it is out of credits when usage has been light?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      },
+      {
+        "question": "Can the assistant fix the out-of-credits problem?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The credit allowance differs depending on the workspace plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Sandbox | Free | 200 credits, one-time (does not renew) | ... | Professional | $59/workspace/month ($590/year) | 5,000 credits/month |"
+      },
+      {
+        "claim": "On Sandbox, the 200 message credits are a one-time allowance that doesn't renew.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "200 credits, one-time (does not renew)"
+      },
+      {
+        "claim": "Even light use can exhaust the Sandbox allowance.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "larger or multimodal models (audio transcription, text-to-speech, flagship chat models) around 10 credits per response"
+      },
+      {
+        "claim": "On Professional or Team, credits reset monthly.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "waits for the next monthly credit reset (paid plans)"
+      },
+      {
+        "claim": "Running out mid-cycle on a paid plan usually means a heavier model, which costs more credits per response, used the balance up faster.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "The Billing page shows which plan the workspace is on and its remaining credits.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "Only the workspace **owner** and **admins** can open the Billing page and manage a subscription."
+      },
+      {
+        "claim": "The customer's options are connecting their own provider key or upgrading.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "until the workspace either connects its own API key for that provider or waits for the next monthly credit reset (paid plans)"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The answer correctly explains the Sandbox vs paid-plan credit behavior and the heavier-model effect, and it asks a sensible clarifying question rather than guessing. The only gap is the claim that the Billing page shows remaining credits. The guide doesn't say that, and it limits Billing access to owners and admins, which the answer doesn't mention. That is a minor issue."
+  }
+}

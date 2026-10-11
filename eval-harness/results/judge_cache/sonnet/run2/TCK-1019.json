@@ -1,0 +1,103 @@
+{
+  "ticket_id": "TCK-1019",
+  "model": "sonnet",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.015299400000000001,
+    "duration_ms": 9834,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 6487,
+      "output_tokens": 1313,
+      "output_tokens_details": {
+        "thinking_tokens": 507
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 217,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1313,
+          "cache_read_input_tokens": 6487,
+          "cache_creation_input_tokens": 217,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 217
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Do I need to delete and re-upload the whole document after fixing a typo, or will it just update?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "There is no need to delete and re-upload; editing and saving the document is enough.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "When a document is edited and saved, it is re-processed through these same four stages before its chunks are available for retrieval again"
+      },
+      {
+        "claim": "The edited document is automatically re-processed through parse, enrich, chunk, and re-index.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Every document a pipeline ingests passes through four stages, in order: **Parse \u2192 Enrich \u2192 Chunk \u2192 Embed/Index**."
+      },
+      {
+        "claim": "The document's chunks are not available for retrieval until reprocessing finishes.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "a newly indexed document is not searchable mid-processing."
+      },
+      {
+        "claim": "The reprocessing period is a \"short window\".",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "The customer should avoid testing retrieval against the document until reprocessing finishes.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "a newly indexed document is not searchable mid-processing."
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The answer correctly says that editing and saving triggers automatic re-processing through the four stages, so no delete or re-upload is needed. The only ungrounded part is the \"short window\" description of how long reprocessing takes. The guide gives no duration, but the detail is harmless."
+  }
+}

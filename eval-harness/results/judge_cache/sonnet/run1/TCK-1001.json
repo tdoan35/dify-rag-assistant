@@ -1,0 +1,121 @@
+{
+  "ticket_id": "TCK-1001",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0321248,
+    "duration_ms": 8654,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4485,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1373,
+      "output_tokens_details": {
+        "thinking_tokens": 324
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4485,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1373,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4485,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4485
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Where do I get an API key to call my published chatbot app from my own backend?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The API key for the app is obtained from inside that app (its own panel), not elsewhere.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "They are created from that app's own **API Access** (sometimes shown as \"Monitoring \u2192 API Key\") panel inside the app builder"
+      },
+      {
+        "claim": "The user should open the app in 'Studio' to reach the API Access panel.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "inside the app builder"
+      },
+      {
+        "claim": "The panel is called API Access, sometimes labeled Monitoring > API Key.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "**API Access** (sometimes shown as \"Monitoring \u2192 API Key\") panel"
+      },
+      {
+        "claim": "Click 'Create new Secret Key' to generate the key.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "by clicking **Create new Secret Key**"
+      },
+      {
+        "claim": "Dify shows the key only once, so copy it right away.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "The key is shown once, prefixed `app-`, and must be stored by the developer immediately since Dify does not redisplay it later."
+      },
+      {
+        "claim": "The key is prefixed with app-.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "The key is shown once, prefixed `app-`"
+      },
+      {
+        "claim": "The key is used as a Bearer token in the Authorization header when calling the app's API.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "The key only works for this specific app; a second app needs its own separately generated key.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "An app's API key only works for that one app \u2014 a key created for one chatbot will return an authentication error if used against a different app's endpoint"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The core answer (API Access panel, Create new Secret Key, shown once, app- prefix, app-scoped) is fully supported by the guide. The only additions not in the guide are the \"Studio\" navigation label and the Bearer/Authorization header detail, which are harmless and likely accurate. They make this a minor issue only."
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "ticket_id": "TCK-1024",
+  "model": "sonnet",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.015336599999999999,
+    "duration_ms": 8092,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 6503,
+      "output_tokens": 1316,
+      "output_tokens_details": {
+        "thinking_tokens": 319
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 218,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1316,
+          "cache_read_input_tokens": 6503,
+          "cache_creation_input_tokens": 218,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 218
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What happens to documents above Professional's limits after downgrading from Team?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "What happens to team members/seats above Professional's limits after downgrading from Team?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Nothing is deleted automatically on downgrade; resources over the limits are not deleted.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "the resources or members above the new plan's cap become inaccessible rather than being deleted"
+      },
+      {
+        "claim": "Documents and members over Professional's limits become inaccessible once the downgrade takes effect.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "the resources or members above the new plan's cap become inaccessible rather than being deleted"
+      },
+      {
+        "claim": "Professional's document cap is 500.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB |"
+      },
+      {
+        "claim": "Professional's team member cap is 3 seats.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB |"
+      },
+      {
+        "claim": "Members beyond the cap lose access until usage is reduced or the plan is upgraded again.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "restoring access requires upgrading again or reducing usage back under the new plan's limits"
+      },
+      {
+        "claim": "It is advisable to get under Professional's caps before downgrading to avoid unintended cutoffs.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "restoring access requires upgrading again or reducing usage back under the new plan's limits"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "none",
+    "failure_modes": [],
+    "rationale": "The answer matches the guide's downgrade behavior: resources and members over the new cap become inaccessible rather than deleted, and access returns by upgrading or reducing usage. The 500-document and 3-member Professional limits are correct. The answer addresses both parts of the ticket and adds no unsupported claims."
+  }
+}

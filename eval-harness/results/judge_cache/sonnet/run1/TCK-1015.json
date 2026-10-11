@@ -1,0 +1,116 @@
+{
+  "ticket_id": "TCK-1015",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0640122,
+    "duration_ms": 22155,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 7005,
+      "cache_read_input_tokens": 9071,
+      "output_tokens": 3417,
+      "output_tokens_details": {
+        "thinking_tokens": 1293
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7005,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1074,
+          "cache_read_input_tokens": 6817,
+          "cache_creation_input_tokens": 2442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2442
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why does the knowledge base upload keep failing partway through?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      },
+      {
+        "question": "Can Team seats be dropped mid-cycle to save money?",
+        "addressed": false,
+        "guide_coverage": "partial"
+      },
+      {
+        "question": "Can seats be dropped without losing any data?",
+        "addressed": false,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The most common cause of an upload failing partway is hitting the plan's document count or Knowledge Data Storage cap during the batch.",
+        "claim_type": "diagnostic",
+        "verdict": "unsupported",
+        "guide_evidence": "A request that would push either over the plan's cap is rejected at upload time with an error naming the limit, rather than silently truncating the document set."
+      },
+      {
+        "claim": "The plan has document count and Knowledge Data Storage limits that the customer can check against current usage.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Each workspace plan caps the number of knowledge documents and the Knowledge Data Storage a dataset can consume; see Section 4."
+      },
+      {
+        "claim": "Reducing 'seat count' mid-cycle would affect the customer's invoice, and proration of seat changes is the relevant billing question (implied seat-based billing).",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "Dify Cloud is billed per **workspace**, not per individual seat, across four tiers."
+      },
+      {
+        "claim": "The assistant lacks confirmed details on proration or mid-cycle changes.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Billing support can walk the customer through what changing seat count mid-cycle means for the invoice.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": true,
+      "assessment": "unnecessary_deferral"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "major",
+    "failure_modes": [
+      "missed_premise_correction",
+      "over_abstention",
+      "unsupported_technical_detail",
+      "contradicts_guide"
+    ],
+    "rationale": "The guide says Dify Cloud is billed per workspace, not per seat, so the customer's premise of dropping Team seats to save money is wrong. The answer never corrects it and implies seat-based invoicing. It also skips the data question, which the guide answers: members over the new cap lose access and resources become inaccessible, not deleted. The \"most common cause\" claim for the upload failure is not in the guide. Sending proration questions to billing is reasonable, since the guide doesn't cover proration."
+  }
+}

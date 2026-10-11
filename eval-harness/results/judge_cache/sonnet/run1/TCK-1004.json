@@ -1,0 +1,120 @@
+{
+  "ticket_id": "TCK-1004",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0299288,
+    "duration_ms": 6679,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4521,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1139,
+      "output_tokens_details": {
+        "thinking_tokens": 202
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4521,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1139,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4521,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4521
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What is the difference between the General, Parent-Child, and Q&A chunking options?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Which chunking option should the customer pick?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "General chunking splits the document into fixed-size segments with some overlap.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "**General** (fixed-size segments with configurable overlap)"
+      },
+      {
+        "claim": "General is a good default for most content.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Parent-Child embeds a smaller child chunk for matching but returns the larger parent chunk to the model.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "a small child chunk is embedded and matched, but its larger parent chunk is returned to the model for fuller context"
+      },
+      {
+        "claim": "Parent-Child helps when you want tight retrieval matches but fuller context in the answer.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "its larger parent chunk is returned to the model for fuller context"
+      },
+      {
+        "claim": "Q&A auto-generates question/answer pairs from the source text and works well for FAQ-style documents.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "the pipeline generates question/answer pairs from the source text, useful for FAQ-style content"
+      },
+      {
+        "claim": "The customer's document is a general product manual.",
+        "claim_type": "customer_context",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Start with General and switch to Parent-Child if answers seem to lack surrounding context.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "invented_user_context"
+    ],
+    "rationale": "The descriptions of all three chunking modes match the guide. The answer assumes the customer's document is a \"product manual\", which the ticket never says. Its recommendation to start with General is also not in the guide. Both are harmless, so the severity is minor."
+  }
+}

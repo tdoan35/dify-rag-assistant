@@ -1,0 +1,91 @@
+{
+  "ticket_id": "TCK-1023",
+  "model": "sonnet",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0085466,
+    "duration_ms": 4613,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 6403,
+      "output_tokens": 639,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 218,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 6403,
+          "cache_creation_input_tokens": 218,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 218
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What is wrong with billing / why is billing not working, and can it be fixed immediately?",
+        "addressed": false,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The system failed to generate a response (response_generation_timeout) and retrieval failed with no chunks returned.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "The customer should resubmit their question or contact support if the problem keeps happening.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": true,
+      "assessment": "missing_escalation"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Raw system error string '[ERROR: response_generation_timeout]' exposed to the customer",
+      "Internal status string 'retrieval_status: failed -- no_chunks_returned' leaked",
+      "No usable answer for the customer's billing issue"
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "system_error_leak",
+      "no_clarification",
+      "missing_escalation"
+    ],
+    "rationale": "The answer is a leaked system error with internal identifiers and gives the customer nothing usable. The ticket is too vague to answer directly (it doesn't say what billing problem occurred). The assistant should have asked for details, such as the error message, plan, or whether the user is a workspace owner or admin, or routed the ticket to a human. It did neither."
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "ticket_id": "TCK-1021",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0557748,
+    "duration_ms": 9092,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4477,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 975,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4477,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 975,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4477,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4477
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Help with connecting Anthropic as a model provider for the support bot",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Why is the workflow's retrieval step returning zero chunks for queries that used to work, and how to fix it",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The Anthropic provider should show under Settings > Model Provider with the API key saved",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Go to **Settings \u2192 Model Provider**... Enter the credentials the provider requires \u2014 typically an API key"
+      },
+      {
+        "claim": "The app's Model setting should point to an Anthropic model",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "set that provider's model as the default (or per-app override) under the app's **Model** settings"
+      },
+      {
+        "claim": "Those steps are all that's needed to connect Anthropic",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Install the plugin for the desired provider... Enter the credentials... Save, then set that provider's model as the default"
+      },
+      {
+        "claim": "Zero retrieval results are almost always caused by the new provider's API key not having fully propagated through the system",
+        "claim_type": "diagnostic",
+        "verdict": "contradicted",
+        "guide_evidence": "most often explained by the score threshold being set too high, the document still being mid-indexing, or the query simply not matching any ingested content \u2014 not by an account or provider-propagation delay"
+      },
+      {
+        "claim": "Waiting about 24 hours will make retrieval results come back on their own with no other changes",
+        "claim_type": "procedural",
+        "verdict": "contradicted",
+        "guide_evidence": "not by an account or provider-propagation delay"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_root_cause",
+      "contradicts_guide"
+    ],
+    "rationale": "The Anthropic connection steps match the guide. The retrieval diagnosis says the cause is provider key propagation, but the guide rules this out by name (\"not by an account or provider-propagation delay\"). It points instead to the score threshold, documents still being indexed, or queries that don't match the content. Telling Tom to wait 24 hours would leave him waiting for a fix that won't come, rather than checking Hit Testing and the retrieval node settings."
+  }
+}

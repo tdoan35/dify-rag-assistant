@@ -1,0 +1,101 @@
+{
+  "ticket_id": "TCK-1025",
+  "model": "opus",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0316054,
+    "duration_ms": 12235,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 215,
+      "cache_read_input_tokens": 6487,
+      "output_tokens": 1429,
+      "output_tokens_details": {
+        "thinking_tokens": 533
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 215,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1429,
+          "cache_read_input_tokens": 6487,
+          "cache_creation_input_tokens": 215,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 215
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What happens once the Sandbox workspace's 200 credits run out, and does the app just stop working?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Model calls that rely on Dify-hosted credits stop working once the credits are used up.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Once a workspace's credits are used up, model calls on Dify-hosted credits stop working"
+      },
+      {
+        "claim": "Sandbox credits are 200 and one-time.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "200 credits, one-time (does not renew)"
+      },
+      {
+        "claim": "Sandbox credits don't reset, unlike credits on a paid plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "waits for the next monthly credit reset (paid plans) \u2014 Sandbox credits do not reset"
+      },
+      {
+        "claim": "Connecting your own provider API key keeps the app running, with calls billed directly by that provider instead of using Dify credits.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "calls to that provider's models are billed directly by the provider and no longer draw down the workspace's Dify message credits"
+      },
+      {
+        "claim": "Professional gives 5,000 credits per month, and they renew each billing cycle.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Professional | $59/workspace/month ($590/year) | 5,000 credits/month"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "none",
+    "failure_modes": [],
+    "rationale": "This answer is safe to send. The guide backs every claim: Dify-hosted model calls stop once credits run out, Sandbox credits are a one-time 200 that never reset, connecting your own API key bills the provider directly, and Professional comes with 5,000 credits a month. \"Renew each billing cycle\" loosely restates the guide's \"monthly credit reset\" (it would only differ for annual subscribers), and the answer is complete, professional and stays within the guide."
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "ticket_id": "TCK-1007",
+  "model": "opus",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0272904,
+    "duration_ms": 10590,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 214,
+      "cache_read_input_tokens": 6452,
+      "output_tokens": 1214,
+      "output_tokens_details": {
+        "thinking_tokens": 309
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 214,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1214,
+          "cache_read_input_tokens": 6452,
+          "cache_creation_input_tokens": 214,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 214
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How do I add a new teammate to our workspace (on the Professional plan)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "New members are invited from Settings > Members in the workspace.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "owners and admins can invite additional members from **Settings \u2192 Members**"
+      },
+      {
+        "claim": "The invitation is sent by email.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "A role is chosen for the invitee (Admin, Editor, or Normal member).",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "new invitees are assigned a role (Owner, Admin, Editor, or Normal member)"
+      },
+      {
+        "claim": "The Professional plan caps a workspace at 3 team members.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 |"
+      },
+      {
+        "claim": "The Team plan allows 50 members.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Team | $159/workspace/month ($1,590/year) | 10,000 credits/month | 50 |"
+      },
+      {
+        "claim": "If already at the 3-member limit, the customer must upgrade to Team before the new invite can be added.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Each workspace plan caps how many members can be active at once"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "unsupported_technical_detail",
+      "overstatement"
+    ],
+    "rationale": "The answer is mostly correct: the guide confirms the Settings \u2192 Members path, the roles, Professional's 3-member cap and Team's 50-member cap. The guide never says invites go out by email, so that detail is unsupported. Saying an upgrade is required is a slight overstatement, because the guide only says plans cap active members and freeing a seat would also work. Neither issue is likely to cause harm."
+  }
+}

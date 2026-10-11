@@ -1,0 +1,120 @@
+{
+  "ticket_id": "TCK-1003",
+  "model": "opus",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0381452,
+    "duration_ms": 19690,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 213,
+      "cache_read_input_tokens": 6566,
+      "output_tokens": 1756,
+      "output_tokens_details": {
+        "thinking_tokens": 595
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1756,
+          "cache_read_input_tokens": 6566,
+          "cache_creation_input_tokens": 213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why does my workspace say I'm out of credits when I haven't used the app much?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Can you fix this (restore the ability to use the app)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The credit allowance differs depending on the workspace's plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Sandbox | Free | 200 credits, one-time (does not renew) ... Professional ... 5,000 credits/month ... Team ... 10,000 credits/month"
+      },
+      {
+        "claim": "On the free Sandbox plan, the 200 message credits are a one-time allowance that doesn't renew.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "200 credits, one-time (does not renew)"
+      },
+      {
+        "claim": "On Professional or Team, credits reset monthly.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "waits for the next monthly credit reset (paid plans) \u2014 Sandbox credits do not reset"
+      },
+      {
+        "claim": "Some model responses cost more credits than others, so a heavier model can use up the balance faster than expected.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "Running out mid-cycle on a paid plan usually means a heavier model used up the balance.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "Message credits are not consumed at a flat rate. Each model response is metered in credits according to the specific model used"
+      },
+      {
+        "claim": "The customer can check the Billing page to see their plan and remaining credits.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "Only the workspace owner and admins can open the Billing page and manage a subscription."
+      },
+      {
+        "claim": "The options are connecting your own provider key or upgrading.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "model calls on Dify-hosted credits stop working until the workspace either connects its own API key for that provider or waits for the next monthly credit reset"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The answer is mostly correct and grounded in the guide. It correctly explains that Sandbox credits are one-time, that paid-plan credits reset monthly, and that heavier models use more credits per response, and it reasonably asks which plan Dana is on. There are two minor issues: the guide does not say the Billing page shows remaining credits, and the answer does not mention that only owners and admins can open that page or that waiting for the monthly reset is an option on paid plans."
+  }
+}

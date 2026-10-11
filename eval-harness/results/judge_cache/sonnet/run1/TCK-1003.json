@@ -1,0 +1,120 @@
+{
+  "ticket_id": "TCK-1003",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0367648,
+    "duration_ms": 11678,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4530,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1819,
+      "output_tokens_details": {
+        "thinking_tokens": 708
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4530,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1819,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4530,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4530
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why is the account showing it is out of credits despite light usage?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Can the assistant fix the out-of-credits problem?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The credit allowance differs depending on the workspace's plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Sandbox | Free | 200 credits, one-time (does not renew) | ... | Professional | $59/workspace/month ($590/year) | 5,000 credits/month |"
+      },
+      {
+        "claim": "On the Sandbox plan, the 200 message credits are a one-time allowance that does not renew.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "200 credits, one-time (does not renew)"
+      },
+      {
+        "claim": "Even light use can exhaust the Sandbox allowance.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "larger or multimodal models ... around 10 credits per response"
+      },
+      {
+        "claim": "On Professional or Team, credits reset monthly.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "waits for the next monthly credit reset (paid plans)"
+      },
+      {
+        "claim": "Running out mid-cycle on a paid plan usually means a heavier model burned through the balance faster, since some responses cost more credits than others.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "The Billing page shows the workspace's plan and its remaining credits.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "Only the workspace **owner** and **admins** can open the Billing page and manage a subscription."
+      },
+      {
+        "claim": "Options for the customer include connecting their own provider key or upgrading.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "until the workspace either connects its own API key for that provider or waits for the next monthly credit reset"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The answer correctly explains Sandbox one-time credits, monthly resets on paid plans, and variable per-model credit costs. It appropriately asks which plan Dana is on, because the ticket is vague. The one gap is that it says the Billing page shows the plan and remaining credits. The guide never says that, and it limits Billing access to owners and admins, so Dana may not be able to open it. That is a minor issue."
+  }
+}

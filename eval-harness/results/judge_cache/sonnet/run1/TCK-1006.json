@@ -1,0 +1,125 @@
+{
+  "ticket_id": "TCK-1006",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.038798,
+    "duration_ms": 6796,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6781,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 1167,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1167,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 6781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why are Sandbox app API calls suddenly failing with rate limit errors?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      },
+      {
+        "question": "Does upgrading to Team provide SSO for members (40 people logging in with company SSO)?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Sandbox workspaces are capped at 5,000 API calls per month.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Sandbox | Free | 200 credits, one-time (does not renew) | 1 | 5 | 50 | 50 MB | 5,000 calls/month |"
+      },
+      {
+        "claim": "The rate limit errors are likely caused by usage growth hitting the 5,000/month ceiling.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "5,000 calls/month"
+      },
+      {
+        "claim": "Both Professional and Team remove the Dify-imposed API cap entirely.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "No Dify-imposed API rate limit"
+      },
+      {
+        "claim": "Team plan costs $159/month.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "$159/workspace/month ($1,590/year)"
+      },
+      {
+        "claim": "Upgrading to Team gives the workspace single sign-on support for all members.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "Enterprise is a separately sold... for organizations that need capabilities beyond what any Cloud tier offers, such as single sign-on, detailed audit logging"
+      },
+      {
+        "claim": "The 40 users could log in with company SSO right away after the upgrade.",
+        "claim_type": "customer_context",
+        "verdict": "contradicted",
+        "guide_evidence": "capabilities beyond what any Cloud tier offers, such as single sign-on"
+      },
+      {
+        "claim": "Team plan accommodates 40 members (implied).",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Team | $159/workspace/month ($1,590/year) | 10,000 credits/month | 50 | 200 | 1,000 | 20 GB |"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": true,
+      "assessment": "missing_escalation"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "States that Team plan includes SSO, which the guide places in Enterprise only; customer could purchase the wrong plan."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_entitlement",
+      "contradicts_guide",
+      "missing_escalation",
+      "overstatement"
+    ],
+    "rationale": "The API-limit explanation is grounded in the guide's 5,000 calls/month Sandbox cap. However, the answer claims Team includes SSO, but the guide lists SSO as an Enterprise-only capability beyond any Cloud tier. The customer would plausibly buy the wrong plan, and the SSO question should have been routed to sales or a specialist team."
+  }
+}

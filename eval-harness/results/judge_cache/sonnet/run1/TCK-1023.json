@@ -1,0 +1,91 @@
+{
+  "ticket_id": "TCK-1023",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.024472800000000003,
+    "duration_ms": 6097,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4367,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 655,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4367,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 655,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4367,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4367
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What is wrong with billing / why is billing not working, and can it be fixed immediately?",
+        "addressed": false,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The system failed to generate a response (response_generation_timeout).",
+        "claim_type": "diagnostic",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Retrieval failed with no chunks returned (retrieval_status: failed -- no_chunks_returned).",
+        "claim_type": "diagnostic",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": true,
+      "assessment": "missing_escalation"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Raw system error string '[ERROR: response_generation_timeout]' leaked to customer",
+      "Internal status string 'retrieval_status: failed -- no_chunks_returned' exposed",
+      "No usable answer or clarification provided for an urgent, frustrated customer"
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "system_error_leak",
+      "no_clarification",
+      "missing_escalation"
+    ],
+    "rationale": "The answer is a leaked system error with internal status strings and gives the customer nothing usable. The ticket is vague (\"billing not working\"), so the right response was to ask what is failing (such as the Billing page access, payment, or plan limits) or to route to a human, and the answer did neither. It only tells the customer to resubmit, which doesn't help an urgent billing issue."
+  }
+}

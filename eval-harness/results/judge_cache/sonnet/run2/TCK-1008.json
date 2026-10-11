@@ -1,0 +1,101 @@
+{
+  "ticket_id": "TCK-1008",
+  "model": "sonnet",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.013669800000000001,
+    "duration_ms": 7835,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 6499,
+      "output_tokens": 1149,
+      "output_tokens_details": {
+        "thinking_tokens": 265
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 219,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1149,
+          "cache_read_input_tokens": 6499,
+          "cache_creation_input_tokens": 219,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 219
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Can the customer use their existing Azure OpenAI deployment instead of regular OpenAI?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Azure OpenAI can be used; install the Azure OpenAI plugin.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Install the plugin for the desired provider (OpenAI, Anthropic, Azure OpenAI, and others are published officially"
+      },
+      {
+        "claim": "The plugin is installed from Settings > Model Provider or the Marketplace filtered by Models.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Go to **Settings \u2192 Model Provider**, or open the **Marketplace** and filter by \"Models.\""
+      },
+      {
+        "claim": "Azure OpenAI needs an API key, resource endpoint URL, and deployment name, unlike standard OpenAI which needs just a key.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "typically an API key, and for Azure OpenAI, also the resource endpoint URL and deployment name."
+      },
+      {
+        "claim": "After saving, the Azure model can be set as the default or a per-app model.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Save, then set that provider's model as the default (or per-app override) under the app's **Model** settings."
+      },
+      {
+        "claim": "Usage will be billed through the customer's Azure account and not draw on Dify message credits.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "calls to that provider's models are billed directly by the provider and no longer draw down the workspace's Dify message credits."
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "none",
+    "failure_modes": [],
+    "rationale": "The answer matches the guide on every point: the official Azure OpenAI plugin, the install path, the three required credentials, default or per-app model selection, and provider-direct billing outside Dify credits. It makes no unsupported claims and is professional and complete."
+  }
+}

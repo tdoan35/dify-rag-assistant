@@ -1,0 +1,116 @@
+{
+  "ticket_id": "TCK-1017",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0630028,
+    "duration_ms": 11990,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4493,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1330,
+      "output_tokens_details": {
+        "thinking_tokens": 345
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1330,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "claims": [
+      {
+        "claim": "Credits are not charged at a flat rate per response.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Message credits are not consumed at a flat rate."
+      },
+      {
+        "claim": "Lighter models can cost as little as 1 credit per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "lighter models (for example smaller GPT variants) consume as little as 1 credit per response"
+      },
+      {
+        "claim": "Mid-tier models cost around 5 credits per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "mid-tier models around 5 credits"
+      },
+      {
+        "claim": "Heavier or multimodal models (transcription, text-to-speech, flagship chat) cost around 10 credits per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "larger or multimodal models (audio transcription, text-to-speech, flagship chat models) around 10 credits per response"
+      },
+      {
+        "claim": "A shift toward a heavier model could on its own explain faster credit burn, even with no change in request volume.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "The app or its users may have been using a heavier model more often this week.",
+        "claim_type": "customer_context",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Checking the usage logs to see which model handled the most requests this week should confirm the cause.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "sub_questions": [
+      {
+        "question": "Why did my credit balance drop faster this week when I didn't change how I use the app?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "unsupported_technical_detail",
+      "invented_user_context"
+    ],
+    "rationale": "The guide supports the explanation that credits vary by model, and so does the per-model credit breakdown. The answer offers this as a possible cause rather than a definite diagnosis, which is reasonable. The only problems are minor: it guesses the model mix changed, even though the customer says nothing changed, and it points to \"usage logs\" that the guide never mentions."
+  }
+}

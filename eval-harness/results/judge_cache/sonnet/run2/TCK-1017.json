@@ -1,0 +1,122 @@
+{
+  "ticket_id": "TCK-1017",
+  "model": "sonnet",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.018518800000000002,
+    "duration_ms": 10280,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 6534,
+      "output_tokens": 1634,
+      "output_tokens_details": {
+        "thinking_tokens": 578
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 217,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1634,
+          "cache_read_input_tokens": 6534,
+          "cache_creation_input_tokens": 217,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 217
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why did the credit balance drop much faster this week even though usage of the app did not change?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Credits aren't charged at a flat rate per response.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Message credits are not consumed at a flat rate."
+      },
+      {
+        "claim": "Lighter models can cost as little as 1 credit per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "lighter models (for example smaller GPT variants) consume as little as 1 credit per response"
+      },
+      {
+        "claim": "Mid-tier models cost around 5 credits per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "mid-tier models around 5 credits"
+      },
+      {
+        "claim": "Heavier or multimodal models (transcription, text-to-speech, flagship chat) cost around 10 credits per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "larger or multimodal models (audio transcription, text-to-speech, flagship chat models) around 10 credits per response"
+      },
+      {
+        "claim": "More use of a heavier model would explain faster credit burn without any change in request volume.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "Even a slight shift in the model mix could cause this much faster drop.",
+        "claim_type": "diagnostic",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "The customer's app or its users may have been using a heavier model more often this week.",
+        "claim_type": "customer_context",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Checking usage logs for which model handled the most requests this week will confirm the cause.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "unsupported_technical_detail",
+      "overstatement"
+    ],
+    "rationale": "The per-model credit rates and the mechanism (a heavier model mix burns credits faster) match the guide, and the answer hedges its diagnosis. It does overstate with \"even slightly\". It also says usage logs will \"confirm\" the cause, but the guide never mentions usage logs or any way to see per-model usage. These are minor, harmless issues."
+  }
+}

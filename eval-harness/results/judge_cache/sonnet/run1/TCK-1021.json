@@ -1,0 +1,90 @@
+{
+  "ticket_id": "TCK-1021",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0248728,
+    "duration_ms": 4868,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4482,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 649,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4482,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 649,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4482,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4482
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How to connect/set up Anthropic as a model provider for the support bot",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Why is the workflow's retrieval step suddenly returning zero chunks for queries that used to work, and how to fix it",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Verify the Anthropic provider is active under Settings > Model Provider with the API key saved.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Go to **Settings \u2192 Model Provider**, or open the **Marketplace** and filter by \"Models.\""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "The answer gives Tom a false diagnosis and tells him to wait 24 hours for a fix that will not come."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_root_cause",
+      "contradicts_guide",
+      "unsupported_technical_detail",
+      "invented_user_context",
+      "overconfident_negative"
+    ],
+    "rationale": "The answer blames zero-chunk retrieval on API-key propagation and tells Tom to wait 24 hours. The guide explicitly rules this out and names the likely causes: score threshold too high, document mid-indexing, or a query that doesn't match any content. Tom would wait for a fix that never arrives instead of checking the retrieval settings."
+  }
+}

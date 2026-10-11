@@ -1,0 +1,109 @@
+{
+  "ticket_id": "TCK-1026",
+  "model": "sonnet",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0193642,
+    "duration_ms": 11851,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 6541,
+      "output_tokens": 1718,
+      "output_tokens_details": {
+        "thinking_tokens": 663
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 218,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1718,
+          "cache_read_input_tokens": 6541,
+          "cache_creation_input_tokens": 218,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 218
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What retrieval node settings control why it sometimes returns far more context than expected and other times almost nothing?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "top_k sets the maximum number of chunks the retrieval node returns.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "**top_k** (how many chunks to return)"
+      },
+      {
+        "claim": "The score threshold, if enabled, discards chunks scoring below the cutoff even if they would otherwise be within top_k.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "an optional **score threshold** (chunks scoring below it are discarded even if they would otherwise be in the top_k)"
+      },
+      {
+        "claim": "Only two settings (top_k and score threshold) control how much context is returned.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": "Retrieval behavior in a live app is governed by settings on the retrieval node: **top_k** ..., an optional **score threshold** ..., and whether **reranking** is enabled via a connected rerank model."
+      },
+      {
+        "claim": "To reduce excess context, lower top_k or raise the score threshold.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "**top_k** (how many chunks to return), an optional **score threshold** (chunks scoring below it are discarded"
+      },
+      {
+        "claim": "If almost nothing is returned, the threshold may be set too high, or the query isn't matching much in the dataset.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "most often explained by the score threshold being set too high, the document still being mid-indexing, or the query simply not matching any ingested content"
+      },
+      {
+        "claim": "Hit Testing on the dataset lets you try different queries and see the actual scores before tuning.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "the **Hit Testing** / retrieval-test panel on the dataset page lets a builder type a sample query and see exactly which chunks would be retrieved and their similarity scores"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "overstatement"
+    ],
+    "rationale": "The answer correctly explains top_k, the score threshold, the likely causes of near-empty results, and Hit Testing, all of which the guide supports. It is slightly overstated: it says \"two settings\" control the behavior, but the guide also lists reranking. It also leaves out the mid-indexing cause. Neither gap is likely to harm the customer."
+  }
+}

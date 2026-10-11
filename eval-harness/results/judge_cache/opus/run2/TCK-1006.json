@@ -1,0 +1,117 @@
+{
+  "ticket_id": "TCK-1006",
+  "model": "opus",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0319248,
+    "duration_ms": 12489,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 213,
+      "cache_read_input_tokens": 6564,
+      "output_tokens": 1445,
+      "output_tokens_details": {
+        "thinking_tokens": 366
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1445,
+          "cache_read_input_tokens": 6564,
+          "cache_creation_input_tokens": 213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why are the Sandbox app's API calls suddenly failing with rate limit errors when nothing changed?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Does upgrading to the Team plan provide SSO for the workspace's 40 members?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Sandbox workspaces are capped at 5,000 API calls per month.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Sandbox | Free | ... | 5,000 calls/month"
+      },
+      {
+        "claim": "The rate limit errors are likely caused by hitting the Sandbox 5,000 calls/month ceiling.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "API rate limit ... 5,000 calls/month"
+      },
+      {
+        "claim": "Both Professional and Team remove the Dify-imposed API cap.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "No Dify-imposed API rate limit"
+      },
+      {
+        "claim": "The Team plan costs $159/month.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Team | $159/workspace/month ($1,590/year)"
+      },
+      {
+        "claim": "Upgrading to the Team plan gives the workspace single sign-on support for all members.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "Enterprise is a separately sold ... product line for organizations that need capabilities beyond what any Cloud tier offers, such as single sign-on"
+      },
+      {
+        "claim": "The customer's 40 users would be able to log in with company SSO right away after upgrading to Team.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "capabilities beyond what any Cloud tier offers, such as single sign-on"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": true,
+      "assessment": "missing_escalation"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_entitlement",
+      "contradicts_guide",
+      "missed_premise_correction",
+      "missing_escalation"
+    ],
+    "rationale": "The answer about the API rate limit is correct: the guide caps Sandbox at 5,000 calls a month and says paid tiers have no Dify-imposed limit. But the answer wrongly tells the customer that the Team plan includes SSO and that it will work right away. The guide lists SSO as an Enterprise capability \"beyond what any Cloud tier offers.\" The customer would likely buy Team on that promise and not get SSO, so this is critical. The answer should have corrected that wrong assumption and sent the SSO question to Enterprise sales."
+  }
+}

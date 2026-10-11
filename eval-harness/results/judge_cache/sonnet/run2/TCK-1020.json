@@ -1,0 +1,104 @@
+{
+  "ticket_id": "TCK-1020",
+  "model": "sonnet",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.016450000000000003,
+    "duration_ms": 8989,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 6470,
+      "output_tokens": 1428,
+      "output_tokens_details": {
+        "thinking_tokens": 451
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 218,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1428,
+          "cache_read_input_tokens": 6470,
+          "cache_creation_input_tokens": 218,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 218
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What are our options now that we are reaching the 500 knowledge document limit on Professional?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Professional caps a workspace at 500 knowledge documents.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB | No Dify-imposed API rate limit |"
+      },
+      {
+        "claim": "Professional caps a workspace at 5 GB of Knowledge Data Storage.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB |"
+      },
+      {
+        "claim": "Upgrading to Team raises the limits to 1,000 documents and 20 GB of storage.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Team | $159/workspace/month ($1,590/year) | 10,000 credits/month | 50 | 200 | 1,000 | 20 GB |"
+      },
+      {
+        "claim": "Enterprise doesn't have a fixed cap on documents/storage.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": "| Enterprise | Custom (contact sales) | Custom | Custom | Custom | Custom | Custom | Custom |"
+      },
+      {
+        "claim": "Sales should be looped in about Enterprise if the customer expects to outgrow Team.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Enterprise pricing and feature scope are negotiated directly with Dify's sales team rather than published"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": true,
+      "assessment": "appropriate"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "major",
+    "failure_modes": [
+      "unsupported_commercial_claim",
+      "overstatement"
+    ],
+    "rationale": "The Professional and Team limits and the sales referral for Enterprise match the guide. However, the claim that Enterprise \"doesn't have a fixed cap\" is an unsupported commercial promise, since the guide lists Enterprise limits only as \"Custom\" and negotiated with sales. The answer also doesn't mention reducing usage as an option, which is a minor gap."
+  }
+}

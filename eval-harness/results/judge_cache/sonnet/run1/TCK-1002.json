@@ -1,0 +1,106 @@
+{
+  "ticket_id": "TCK-1002",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.030182800000000003,
+    "duration_ms": 7366,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4477,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1182,
+      "output_tokens_details": {
+        "thinking_tokens": 280
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4477,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1182,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4477,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4477
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How do I connect my own OpenAI API key instead of using the built-in Dify credits?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Will using my own key avoid burning through my free trial credits?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Go to Settings > Model Provider, or open the Marketplace filtered to Models, to start connecting a provider.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Go to **Settings \u2192 Model Provider**, or open the **Marketplace** and filter by \"Models.\""
+      },
+      {
+        "claim": "Install the OpenAI plugin if it isn't already added.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Install the plugin for the desired provider (OpenAI, Anthropic, Azure OpenAI, and others are published officially"
+      },
+      {
+        "claim": "Enter your OpenAI API key when prompted and save.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Enter the credentials the provider requires \u2014 typically an API key"
+      },
+      {
+        "claim": "Set the connected provider's model as the default or as a per-app override under the app's Model settings.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "set that provider's model as the default (or per-app override) under the app's **Model** settings."
+      },
+      {
+        "claim": "Once connected, calls to OpenAI models are billed directly by OpenAI using your key and don't draw down your Dify message credits.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "calls to that provider's models are billed directly by the provider and no longer draw down the workspace's Dify message credits."
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "none",
+    "failure_modes": [],
+    "rationale": "The answer reproduces the guide's four-step process for connecting a model provider and correctly states that calls made with your own key are billed by the provider and don't use Dify credits. Every factual claim is supported. It is complete, appropriately scoped, and professional in tone."
+  }
+}

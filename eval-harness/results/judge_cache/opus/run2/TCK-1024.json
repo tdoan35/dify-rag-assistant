@@ -1,0 +1,106 @@
+{
+  "ticket_id": "TCK-1024",
+  "model": "opus",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.026240599999999996,
+    "duration_ms": 9838,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 214,
+      "cache_read_input_tokens": 6503,
+      "output_tokens": 1161,
+      "output_tokens_details": {
+        "thinking_tokens": 226
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 214,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1161,
+          "cache_read_input_tokens": 6503,
+          "cache_creation_input_tokens": 214,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 214
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What happens to documents above Professional's limits after downgrading from Team to Professional?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "What happens to seats/team members above Professional's limits after downgrading from Team to Professional?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Nothing gets deleted automatically on downgrade.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "the resources or members above the new plan's cap become inaccessible rather than being deleted"
+      },
+      {
+        "claim": "Anything over Professional's limits becomes inaccessible once the downgrade takes effect.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "the members over the new cap lose workspace access immediately until seats are freed or the plan is upgraded again"
+      },
+      {
+        "claim": "Professional caps knowledge documents at 500.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB"
+      },
+      {
+        "claim": "Professional caps team members at 3 seats.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3"
+      },
+      {
+        "claim": "Access is restored by trimming usage back under Professional's limits or upgrading again.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "restoring access requires upgrading again or reducing usage back under the new plan's limits"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "none",
+    "failure_modes": [],
+    "rationale": "Every factual claim matches Section 4 and Section 1 of the guide. Over-limit resources and members become inaccessible but are not deleted. Professional allows 500 documents and 3 seats, and access comes back by upgrading again or reducing usage. The suggestion to get under the caps before downgrading is reasonable, non-committal advice, and the only gap is that the answer doesn't mention the 5 GB storage cap, which is harmless."
+  }
+}

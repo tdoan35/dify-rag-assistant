@@ -1,0 +1,9 @@
+config,description,escaped_blocking,escaped_critical,caught_blocking,auto_sent,auto_send_rate,held_non_blocking,judge_calls
+C0,No quality layer: every draft is sent,TCK-1005;TCK-1006;TCK-1009;TCK-1012;TCK-1021;TCK-1023,TCK-1006;TCK-1009;TCK-1021,0/6,26,1.0,0,0
+C1@25%,DoorDash-faithful: tier-1 flags ~25% (tau=0.049); only flagged drafts reach the LLM judge,TCK-1005;TCK-1006;TCK-1012;TCK-1023,TCK-1006,2/6,23,0.885,1,6
+C1@50%,DoorDash-faithful: tier-1 flags ~50% (tau=0.075); only flagged drafts reach the LLM judge,TCK-1012,,5/6,20,0.769,1,13
+C1@75%,DoorDash-faithful: tier-1 flags ~75% (tau=0.118); only flagged drafts reach the LLM judge,,,6/6,19,0.731,1,19
+C2,LLM judge on every draft,,,6/6,19,0.731,1,26
+R-gen,Generic deterministic rules only (no LLM),TCK-1005;TCK-1012,,4/6,19,0.731,3,0
+C3-gen,"Recommended, without hindsight rules: generic input routing + generic output rules + judge on every non-routed draft",,,6/6,17,0.654,3,19
+C3,Recommended: C3-gen plus the regression rules,,,6/6,17,0.654,3,19

@@ -1,0 +1,95 @@
+{
+  "ticket_id": "TCK-1014",
+  "model": "sonnet",
+  "run": 2,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.287 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0097472,
+    "duration_ms": 7727,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 6456,
+      "output_tokens": 758,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 218,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 758,
+          "cache_read_input_tokens": 6456,
+          "cache_creation_input_tokens": 218,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 218
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Is there a way to test what the knowledge base will retrieve before plugging it into a live app?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "A Hit Testing panel exists on the dataset page that can be used to test retrieval before publishing an app.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "the **Hit Testing** / retrieval-test panel on the dataset page lets a builder type a sample query"
+      },
+      {
+        "claim": "Typing a sample query shows exactly which chunks would be retrieved and their similarity scores.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "see exactly which chunks would be retrieved and their similarity scores"
+      },
+      {
+        "claim": "This can be done without running the full app.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "without needing to run the full app"
+      },
+      {
+        "claim": "Hit Testing is a good way to sanity-check chunking and indexing choices before wiring the dataset into a retrieval node.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "lets a builder type a sample query and see exactly which chunks would be retrieved and their similarity scores"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "none",
+    "failure_modes": [],
+    "rationale": "The answer accurately describes the Hit Testing panel on the dataset page, matching the guide: sample query, retrieved chunks, similarity scores, no need to run the full app. The remark about sanity-checking chunking and indexing choices is a reasonable inference from what the panel shows. It is complete, appropriately scoped, and professional."
+  }
+}
