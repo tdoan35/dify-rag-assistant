@@ -1,0 +1,117 @@
+{
+  "ticket_id": "H12",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0327634,
+    "duration_ms": 8400,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4856,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1311,
+      "output_tokens_details": {
+        "thinking_tokens": 341
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1311,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How do I add a new teammate to our workspace?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Does being on the Professional plan affect adding a teammate? (implied)",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Invite a new member via Workspace > People > Access Control.",
+        "claim_type": "procedural",
+        "verdict": "contradicted",
+        "guide_evidence": "owners and admins can invite additional members from **Settings \u2192 Members**"
+      },
+      {
+        "claim": "Members are invited by email.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "The inviter chooses the new member's role (Admin, Editor, or Normal member).",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "new invitees are assigned a role (Owner, Admin, Editor, or Normal member)"
+      },
+      {
+        "claim": "Professional caps a workspace at 3 team members.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB |"
+      },
+      {
+        "claim": "Team plan allows 50 members.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Team | $159/workspace/month ($1,590/year) | 10,000 credits/month | 50 | 200 |"
+      },
+      {
+        "claim": "If already at the member limit, upgrading to Team is needed before the new invite can be added.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Each workspace plan caps how many members can be active at once (see Section 4)"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "The primary instruction gives a UI path (Workspace > People > Access Control) that the guide does not support, so the customer will not find it."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "fabricated_ui_path",
+      "contradicts_guide"
+    ],
+    "rationale": "The core \"how do I\" answer gives a navigation path that contradicts the guide's Settings \u2192 Members, so the customer can't complete the task as written. The plan-limit details (3 members on Professional, 50 on Team) are correct and useful, but the wrong path leaves the main question without a usable answer."
+  }
+}

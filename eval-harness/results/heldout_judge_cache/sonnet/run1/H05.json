@@ -1,0 +1,87 @@
+{
+  "ticket_id": "H05",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0304974,
+    "duration_ms": 7591,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4972,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1038,
+      "output_tokens_details": {
+        "thinking_tokens": 452
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1038,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why does the account say it is out of credits despite light usage?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Can the assistant fix the out-of-credits problem?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The Sandbox plan includes 2,000 message credits.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "| Sandbox | Free | 200 credits, one-time (does not renew) |"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "States an incorrect Sandbox credit allowance (2,000 instead of 200), which could mislead the customer about their entitlement."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "contradicts_guide",
+      "wrong_entitlement"
+    ],
+    "rationale": "The answer states that Sandbox includes 2,000 credits, but the guide says 200. That misstates a plan entitlement, and Dana could act on it, for example by misjudging her usage or the upgrade decision. The other content is grounded and asking which plan she is on is reasonable, but the wrong number makes it unsafe to send as written."
+  }
+}

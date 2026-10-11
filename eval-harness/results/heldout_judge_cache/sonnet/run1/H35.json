@@ -1,0 +1,89 @@
+{
+  "ticket_id": "H35",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0258774,
+    "duration_ms": 4409,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4797,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 646,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 646,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Is there a cap on monthly API calls on the free plan?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The free Sandbox plan allows 5,000 API calls a month.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Sandbox | Free | 200 credits, one-time (does not renew) | 1 | 5 | 50 | 50 MB | 5,000 calls/month |"
+      },
+      {
+        "claim": "Professional and Team plans don't have a Dify-imposed API limit.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | ... | No Dify-imposed API rate limit |; | Team | ... | No Dify-imposed API rate limit |"
+      },
+      {
+        "claim": "The free plan is the Sandbox plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Sandbox | Free |"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "none",
+    "failure_modes": [],
+    "rationale": "The answer correctly states the Sandbox 5,000 calls/month limit and the absence of a Dify-imposed API limit on Professional and Team, both directly from the plan table. It fully addresses the single question with no unsupported claims and a professional tone."
+  }
+}

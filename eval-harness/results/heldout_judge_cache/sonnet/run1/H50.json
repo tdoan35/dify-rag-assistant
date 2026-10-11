@@ -1,0 +1,116 @@
+{
+  "ticket_id": "H50",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0301714,
+    "duration_ms": 5957,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4938,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1019,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4938,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1019,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4938,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4938
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What happens to documents above Professional's limits after downgrading from Team?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "What happens to team members/seats above Professional's limits after downgrading?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Nothing gets deleted automatically on downgrade; resources over the cap become inaccessible.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "the resources or members above the new plan's cap become inaccessible rather than being deleted"
+      },
+      {
+        "claim": "Documents beyond Professional's 500 cap would lose access.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB |"
+      },
+      {
+        "claim": "Team members beyond the 3-seat cap would lose access.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "the members over the new cap lose workspace access immediately until seats are freed or the plan is upgraded again"
+      },
+      {
+        "claim": "Access is restored by trimming usage under Professional's limits or upgrading again.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "restoring access requires upgrading again or reducing usage back under the new plan's limits"
+      },
+      {
+        "claim": "Recommendation to get under the caps intentionally before downgrading.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "restoring access requires upgrading again or reducing usage back under the new plan's limits"
+      },
+      {
+        "claim": "If you downgrade mid-cycle, Dify refunds the unused part of the Team subscription to your card.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Includes a fabricated billing/refund promise that the customer could rely on when deciding on the timing of the downgrade."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "unsupported_commercial_claim"
+    ],
+    "rationale": "The core answer about inaccessible, not deleted, documents and members is correct and grounded in the guide. However, the closing claim that Dify refunds the unused part of a Team subscription mid-cycle is an unsupported commercial and billing promise, because the guide says nothing about refunds or proration. That makes the answer unsafe to send as written."
+  }
+}

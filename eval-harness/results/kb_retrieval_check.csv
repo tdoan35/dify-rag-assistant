@@ -1,0 +1,10 @@
+ticket,query,corrective_fact,current_rank,current_in_top_3,current_chunk,proposed_rank,proposed_in_top_3,proposed_chunk
+TCK-1009,whole ticket,"SSO is Enterprise-only, not on any Cloud plan",1,1,## What this guide does not cover This excerpt focuses on day-to-day w,1,1,"**What no Cloud plan includes.** Single sign-on (SSO/SAML), detailed a"
+TCK-1006,whole ticket,"SSO is Enterprise-only, not on any Cloud plan",4,0,## What this guide does not cover This excerpt focuses on day-to-day w,1,1,| Plan | Price | Message credits | Team members | Apps | Knowledge doc
+TCK-1006,sub-question,"SSO is Enterprise-only, not on any Cloud plan",1,1,## What this guide does not cover This excerpt focuses on day-to-day w,2,1,"**What no Cloud plan includes.** Single sign-on (SSO/SAML), detailed a"
+TCK-1005,whole ticket,support levels are not documented for any plan,,0,,1,1,"**What no Cloud plan includes.** Single sign-on (SSO/SAML), detailed a"
+TCK-1012,whole ticket,community and self-hosted provider plugins exist,2,1,Model providers unrelated to standard chat/completion — for example se,2,1,Model providers unrelated to standard chat/completion — for example se
+TCK-1015,whole ticket,"billing is per workspace, not per seat",8,0,"## 4. Billing, Plans, and Limits Dify Cloud is billed per **workspace*",5,0,"**Seats and price.** Because Dify Cloud is billed per workspace, not p"
+TCK-1015,sub-question,"billing is per workspace, not per seat",2,1,"## 4. Billing, Plans, and Limits Dify Cloud is billed per **workspace*",1,1,"**Seats and price.** Because Dify Cloud is billed per workspace, not p"
+TCK-1021,whole ticket,empty retrieval is not a propagation delay,1,1,"Before publishing an app that uses a dataset, the **Hit Testing** / re",1,1,**Empty retrieval is not a propagation delay.** If a retrieval step re
+TCK-1021,sub-question,empty retrieval is not a propagation delay,1,1,"Before publishing an app that uses a dataset, the **Hit Testing** / re",1,1,**Empty retrieval is not a propagation delay.** If a retrieval step re

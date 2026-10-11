@@ -1,0 +1,89 @@
+{
+  "ticket_id": "H42",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0267214,
+    "duration_ms": 4554,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4828,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 718,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 718,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Do I need to delete and re-upload the whole document after fixing a typo, or will it just update?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Edits to an existing document aren't re-indexed, so the old text will keep showing up in retrieval.",
+        "claim_type": "technical",
+        "verdict": "contradicted",
+        "guide_evidence": "When a document is edited and saved, it is re-processed through these same four stages before its chunks are available for retrieval again"
+      },
+      {
+        "claim": "The customer should delete the document and upload the corrected file as a new one.",
+        "claim_type": "procedural",
+        "verdict": "contradicted",
+        "guide_evidence": "When a document is edited and saved, it is re-processed through these same four stages before its chunks are available for retrieval again; a newly indexed document is not searchable mid-processing."
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Gives incorrect instruction that would lead the customer to needlessly delete and re-upload documents, based on a false claim about how edits work."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "contradicts_guide",
+      "missed_premise_correction",
+      "overconfident_negative"
+    ],
+    "rationale": "The guide says an edited and saved document is automatically re-processed through Parse, Enrich, Chunk and Embed/Index. The answer says edits aren't re-indexed and tells the customer to delete and re-upload, which contradicts the guide. The error is confident and leads to unnecessary work, and could count against document or storage quotas. It is not a billing or security matter, so I rated it major rather than critical."
+  }
+}

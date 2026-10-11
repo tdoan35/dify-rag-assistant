@@ -1,0 +1,129 @@
+{
+  "ticket_id": "H05",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.08274680000000001,
+    "duration_ms": 19072,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4966,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 2128,
+      "output_tokens_details": {
+        "thinking_tokens": 904
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4966,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 2128,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4966,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4966
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why does it say I'm out of credits when I haven't used the app much?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Can you fix this (restore ability to use the app)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The credit allowance differs depending on the workspace's plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Sandbox | Free | 200 credits, one-time (does not renew) ... Professional ... 5,000 credits/month"
+      },
+      {
+        "claim": "The free Sandbox plan includes 2,000 message credits.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "Sandbox | Free | 200 credits, one-time (does not renew)"
+      },
+      {
+        "claim": "Sandbox credits are a one-time allowance that does not renew.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Sandbox credits do not reset."
+      },
+      {
+        "claim": "Even light use can exhaust the Sandbox allowance.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "On Professional or Team, credits reset monthly.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "waits for the next monthly credit reset (paid plans)"
+      },
+      {
+        "claim": "Some model responses cost more credits than others, so a heavier model can burn through the balance faster than expected.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "lighter models ... as little as 1 credit per response, mid-tier models around 5 credits, and larger or multimodal models ... around 10 credits per response"
+      },
+      {
+        "claim": "The Billing page shows which plan the workspace is on and its remaining credits.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Options to resolve running out include connecting your own provider key or upgrading.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "model calls on Dify-hosted credits stop working until the workspace either connects its own API key for that provider or waits for the next monthly credit reset"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "States the Sandbox plan includes 2,000 message credits; the guide says 200, a tenfold overstatement of the plan entitlement."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_entitlement",
+      "contradicts_guide"
+    ],
+    "rationale": "The answer is set up well. It explains how credits are metered per model and the difference between one-time and monthly allowances, and it's right to ask which plan Dana is on. But it says the Sandbox plan comes with 2,000 credits when the guide says 200. A Sandbox user could reasonably decide their account is broken or that they've been shortchanged, so this wrong figure for what the plan includes rules out sending the answer as written."
+  }
+}

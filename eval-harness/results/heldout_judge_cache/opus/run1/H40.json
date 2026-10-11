@@ -1,0 +1,108 @@
+{
+  "ticket_id": "H40",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0582308,
+    "duration_ms": 7474,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4814,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 963,
+      "output_tokens_details": {
+        "thinking_tokens": 85
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4814,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 963,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4814
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Can we export audit logs from our workspace for an upcoming SOC 2 review?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Audit-log export is available on the Team plan.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "Enterprise is a separately sold... product line for organizations that need capabilities beyond what any Cloud tier offers, such as single sign-on, detailed audit logging"
+      },
+      {
+        "claim": "Audit logs are found at Settings > Audit Logs.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "You can pick a date range for the audit-log export.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Audit logs can be exported as CSV.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": "It does not document Enterprise-only configuration (SSO/SAML setup, audit-log export formats, compliance certifications)"
+      },
+      {
+        "claim": "The exported CSV is suitable for SOC 2 auditors.",
+        "claim_type": "customer_context",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": true,
+      "assessment": "missing_escalation"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_entitlement",
+      "contradicts_guide",
+      "fabricated_ui_path",
+      "unsupported_technical_detail",
+      "unsupported_commercial_claim",
+      "missing_escalation"
+    ],
+    "rationale": "The guide lists detailed audit logging as an Enterprise capability \"beyond what any Cloud tier offers.\" That contradicts the answer's claim that the Team plan includes audit-log export. The Settings > Audit Logs path and the CSV export are made up, and the guide says it does not cover audit-log export formats or compliance topics, so this ticket should go to a specialist or sales team. A compliance lead could buy or plan a SOC 2 review around a feature their plan doesn't have."
+  }
+}

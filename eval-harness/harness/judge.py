@@ -10,8 +10,8 @@ Backends:
   api         Calls the Anthropic Messages API with structured outputs (needs the `anthropic`
               package and credentials).
 
-Every judgment is cached under results/judge_cache/<model>/run<k>/<ticket>.json so the scoring
-step can be re-run offline without credentials.
+Every judgment is cached under results/judge_cache/<model>/run<k>/<ticket>.json (held-out cases
+under results/heldout_judge_cache/) so the scoring step can be re-run offline without credentials.
 """
 
 import hashlib
@@ -26,6 +26,7 @@ from .data import PROMPTS_DIR, RESULTS_DIR, Ticket
 
 MODEL_IDS = {"opus": "claude-opus-5-5", "sonnet": "claude-sonnet-5-5"}
 CACHE_DIR = RESULTS_DIR / "judge_cache"
+HELDOUT_CACHE_DIR = RESULTS_DIR / "heldout_judge_cache"
 
 
 class JudgeError(RuntimeError):
@@ -150,8 +151,8 @@ def make_backend(name: str, model: str, effort: str):
     raise ValueError(f"unknown backend {name!r}")
 
 
-def cache_path(model: str, run: int, ticket_id: str) -> Path:
-    return CACHE_DIR / model / f"run{run}" / f"{ticket_id}.json"
+def cache_path(model: str, run: int, ticket_id: str, cache_dir: Path = CACHE_DIR) -> Path:
+    return cache_dir / model / f"run{run}" / f"{ticket_id}.json"
 
 
 def run_judge(
@@ -164,6 +165,7 @@ def run_judge(
     workers: int = 4,
     force: bool = False,
     retries: int = 2,
+    cache_dir: Path = CACHE_DIR,
 ) -> None:
     """Judge every ticket `runs` times with `model`, writing results to the cache."""
     system, schema = load_prompt()
@@ -172,7 +174,7 @@ def run_judge(
 
     jobs = [
         (run, t) for run in range(1, runs + 1) for t in tickets
-        if force or not cache_path(model, run, t.id).exists()
+        if force or not cache_path(model, run, t.id, cache_dir).exists()
     ]
     print(f"[judge] {model}: {len(jobs)} judgments to run ({len(tickets) * runs - len(jobs)} cached)")
 
@@ -188,7 +190,7 @@ def run_judge(
                 time.sleep(2 * (attempt + 1))
         else:
             raise JudgeError(f"{ticket.id} run{run}: {last_error}")
-        path = cache_path(model, run, ticket.id)
+        path = cache_path(model, run, ticket.id, cache_dir)
         path.parent.mkdir(parents=True, exist_ok=True)
         record = {
             "ticket_id": ticket.id,
@@ -214,12 +216,12 @@ def run_judge(
         raise JudgeError(f"{len(failures)} judgments failed; re-run to retry only the missing ones")
 
 
-def load_judgments(model: str) -> dict[int, dict[str, dict]]:
+def load_judgments(model: str, cache_dir: Path = CACHE_DIR) -> dict[int, dict[str, dict]]:
     """Cached judgments for one model: {run: {ticket_id: record}}."""
     system, schema = load_prompt()
     fingerprint = prompt_fingerprint(system, schema)
     runs: dict[int, dict[str, dict]] = {}
-    for path in sorted((CACHE_DIR / model).glob("run*/*.json")):
+    for path in sorted((cache_dir / model).glob("run*/*.json")):
         record = json.loads(path.read_text(encoding="utf-8"))
         if record["prompt_fingerprint"] != fingerprint:
             raise JudgeError(f"{path} was produced by a different judge prompt; re-run the judge")

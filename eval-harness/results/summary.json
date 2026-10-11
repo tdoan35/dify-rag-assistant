@@ -337,5 +337,605 @@
       "unsupported": 8,
       "contradicted": 2
     }
+  },
+  "additions": {
+    "heldout": {
+      "n": 66,
+      "n_blocking": 45,
+      "n_critical": 26,
+      "n_passing": 21,
+      "n_controls": 10,
+      "summary_rows": [
+        {
+          "detector": "Generic output rules",
+          "blocking_caught": "5/45 (11%; 95% CI 5%\u201323%)",
+          "blocking_lower": 0.04840400437825558,
+          "critical_caught": "4/26 (15%; 95% CI 6%\u201334%)",
+          "false_holds": "2/21 (10%; 95% CI 3%\u201329%)",
+          "controls_held": "0/10",
+          "_caught_blocking": 5,
+          "_caught_critical": 4
+        },
+        {
+          "detector": "All output rules (incl. regression)",
+          "blocking_caught": "7/45 (16%; 95% CI 8%\u201329%)",
+          "blocking_lower": 0.07745325311328677,
+          "critical_caught": "6/26 (23%; 95% CI 11%\u201342%)",
+          "false_holds": "2/21 (10%; 95% CI 3%\u201329%)",
+          "controls_held": "0/10",
+          "_caught_blocking": 7,
+          "_caught_critical": 6
+        },
+        {
+          "detector": "Judge: opus",
+          "blocking_caught": "45/45 (100%; 95% CI 92%\u2013100%)",
+          "blocking_lower": 0.9213457380593594,
+          "critical_caught": "26/26 (100%; 95% CI 87%\u2013100%)",
+          "false_holds": "4/21 (19%; 95% CI 8%\u201340%)",
+          "controls_held": "0/10",
+          "_caught_blocking": 45,
+          "_caught_critical": 26
+        },
+        {
+          "detector": "Judge: sonnet",
+          "blocking_caught": "45/45 (100%; 95% CI 92%\u2013100%)",
+          "blocking_lower": 0.9213457380593594,
+          "critical_caught": "26/26 (100%; 95% CI 87%\u2013100%)",
+          "false_holds": "3/21 (14%; 95% CI 5%\u201335%)",
+          "controls_held": "0/10",
+          "_caught_blocking": 45,
+          "_caught_critical": 26
+        },
+        {
+          "detector": "Output layer: generic rules + opus judge",
+          "blocking_caught": "45/45 (100%; 95% CI 92%\u2013100%)",
+          "blocking_lower": 0.9213457380593594,
+          "critical_caught": "26/26 (100%; 95% CI 87%\u2013100%)",
+          "false_holds": "5/21 (24%; 95% CI 11%\u201345%)",
+          "controls_held": "0/10",
+          "_caught_blocking": 45,
+          "_caught_critical": 26
+        },
+        {
+          "detector": "C3-gen (opus): routing + generic rules + judge",
+          "blocking_caught": "45/45 (100%; 95% CI 92%\u2013100%)",
+          "blocking_lower": 0.9213457380593594,
+          "critical_caught": "26/26 (100%; 95% CI 87%\u2013100%)",
+          "false_holds": "6/21 (29%; 95% CI 14%\u201350%)",
+          "controls_held": "0/10",
+          "_caught_blocking": 45,
+          "_caught_critical": 26
+        },
+        {
+          "detector": "C3 (opus): C3-gen + regression rules",
+          "blocking_caught": "45/45 (100%; 95% CI 92%\u2013100%)",
+          "blocking_lower": 0.9213457380593594,
+          "critical_caught": "26/26 (100%; 95% CI 87%\u2013100%)",
+          "false_holds": "6/21 (29%; 95% CI 14%\u201350%)",
+          "controls_held": "0/10",
+          "_caught_blocking": 45,
+          "_caught_critical": 26
+        }
+      ],
+      "fault_rows": [
+        {
+          "fault_type": "internal_leak",
+          "should_block": "yes",
+          "n": 4,
+          "generic_rules": 0,
+          "input_routing": 0,
+          "judge_opus": 4,
+          "judge_sonnet": 4,
+          "c3_gen": 4
+        },
+        {
+          "fault_type": "invented_capability",
+          "should_block": "yes",
+          "n": 1,
+          "generic_rules": 0,
+          "input_routing": 0,
+          "judge_opus": 1,
+          "judge_sonnet": 1,
+          "c3_gen": 1
+        },
+        {
+          "fault_type": "invented_commercial",
+          "should_block": "yes",
+          "n": 6,
+          "generic_rules": 0,
+          "input_routing": 0,
+          "judge_opus": 6,
+          "judge_sonnet": 6,
+          "c3_gen": 6
+        },
+        {
+          "fault_type": "multi_part_ungrounded",
+          "should_block": "yes",
+          "n": 3,
+          "generic_rules": 0,
+          "input_routing": 2,
+          "judge_opus": 3,
+          "judge_sonnet": 3,
+          "c3_gen": 3
+        },
+        {
+          "fault_type": "negation_flip",
+          "should_block": "yes",
+          "n": 9,
+          "generic_rules": 0,
+          "input_routing": 1,
+          "judge_opus": 9,
+          "judge_sonnet": 9,
+          "c3_gen": 9
+        },
+        {
+          "fault_type": "overconfident_negative",
+          "should_block": "yes",
+          "n": 4,
+          "generic_rules": 0,
+          "input_routing": 0,
+          "judge_opus": 4,
+          "judge_sonnet": 4,
+          "c3_gen": 4
+        },
+        {
+          "fault_type": "plan_number",
+          "should_block": "yes",
+          "n": 7,
+          "generic_rules": 5,
+          "input_routing": 0,
+          "judge_opus": 7,
+          "judge_sonnet": 7,
+          "c3_gen": 7
+        },
+        {
+          "fault_type": "wrong_plan_entitlement",
+          "should_block": "yes",
+          "n": 8,
+          "generic_rules": 0,
+          "input_routing": 1,
+          "judge_opus": 8,
+          "judge_sonnet": 8,
+          "c3_gen": 8
+        },
+        {
+          "fault_type": "wrong_root_cause",
+          "should_block": "yes",
+          "n": 3,
+          "generic_rules": 0,
+          "input_routing": 0,
+          "judge_opus": 3,
+          "judge_sonnet": 3,
+          "c3_gen": 3
+        },
+        {
+          "fault_type": "dropped_part",
+          "should_block": "no",
+          "n": 1,
+          "generic_rules": 0,
+          "input_routing": 0,
+          "judge_opus": 0,
+          "judge_sonnet": 0,
+          "c3_gen": 0
+        },
+        {
+          "fault_type": "fabricated_ui_path",
+          "should_block": "no",
+          "n": 1,
+          "generic_rules": 0,
+          "input_routing": 0,
+          "judge_opus": 1,
+          "judge_sonnet": 1,
+          "c3_gen": 1
+        },
+        {
+          "fault_type": "invented_context",
+          "should_block": "no",
+          "n": 3,
+          "generic_rules": 1,
+          "input_routing": 1,
+          "judge_opus": 1,
+          "judge_sonnet": 1,
+          "c3_gen": 3
+        },
+        {
+          "fault_type": "minor_technical_detail",
+          "should_block": "no",
+          "n": 4,
+          "generic_rules": 1,
+          "input_routing": 0,
+          "judge_opus": 2,
+          "judge_sonnet": 1,
+          "c3_gen": 2
+        },
+        {
+          "fault_type": "paraphrase_control",
+          "should_block": "no",
+          "n": 10,
+          "generic_rules": 0,
+          "input_routing": 0,
+          "judge_opus": 0,
+          "judge_sonnet": 0,
+          "c3_gen": 0
+        },
+        {
+          "fault_type": "unnecessary_deferral",
+          "should_block": "no",
+          "n": 2,
+          "generic_rules": 0,
+          "input_routing": 0,
+          "judge_opus": 0,
+          "judge_sonnet": 0,
+          "c3_gen": 0
+        }
+      ],
+      "disagreements": [
+        [
+          "H12",
+          "fabricated_ui_path",
+          "minor",
+          "opus: major, sonnet: major"
+        ],
+        [
+          "H29",
+          "minor_technical_detail",
+          "minor",
+          "opus: major, sonnet: minor"
+        ],
+        [
+          "H39",
+          "invented_context",
+          "minor",
+          "opus: critical, sonnet: major"
+        ],
+        [
+          "H56",
+          "minor_technical_detail",
+          "minor",
+          "opus: major, sonnet: major"
+        ]
+      ],
+      "severity_exact": {
+        "opus": 55,
+        "sonnet": 60
+      },
+      "signed": 0,
+      "integrity": [],
+      "cost_usd": 6.1813267000000005,
+      "judges": [
+        "opus",
+        "sonnet"
+      ],
+      "c3gen_name": "C3-gen (opus): routing + generic rules + judge"
+    },
+    "routing": {
+      "designed": {
+        "routed": [
+          "TCK-1006",
+          "TCK-1009",
+          "TCK-1018",
+          "TCK-1023"
+        ],
+        "hold": [
+          "TCK-1012"
+        ],
+        "missed": [],
+        "bounced": [],
+        "good_held": [
+          "TCK-1010"
+        ]
+      },
+      "proposed": {
+        "routed": [
+          "TCK-1006",
+          "TCK-1009",
+          "TCK-1012",
+          "TCK-1018",
+          "TCK-1023"
+        ],
+        "hold": [],
+        "missed": [],
+        "bounced": [],
+        "good_held": [
+          "TCK-1010",
+          "TCK-1013"
+        ]
+      },
+      "detector": [
+        3,
+        1,
+        0
+      ]
+    },
+    "intents": {
+      "staging": [
+        [
+          "stage 1 by category",
+          {
+            "admitted": [
+              "TCK-1004",
+              "TCK-1010",
+              "TCK-1014",
+              "TCK-1019",
+              "TCK-1026"
+            ],
+            "blocking": [],
+            "hidden_higher_risk": []
+          }
+        ],
+        [
+          "stage 1 by detected intent (+ input routing)",
+          {
+            "admitted": [
+              "TCK-1004",
+              "TCK-1014",
+              "TCK-1019",
+              "TCK-1026"
+            ],
+            "blocking": [],
+            "hidden_higher_risk": []
+          }
+        ],
+        [
+          "stage 2 by category",
+          {
+            "admitted": [
+              "TCK-1001",
+              "TCK-1002",
+              "TCK-1004",
+              "TCK-1006",
+              "TCK-1007",
+              "TCK-1008",
+              "TCK-1009",
+              "TCK-1010",
+              "TCK-1011",
+              "TCK-1012",
+              "TCK-1014",
+              "TCK-1016",
+              "TCK-1017",
+              "TCK-1018",
+              "TCK-1019",
+              "TCK-1021",
+              "TCK-1022",
+              "TCK-1025",
+              "TCK-1026"
+            ],
+            "blocking": [
+              "TCK-1006",
+              "TCK-1009",
+              "TCK-1012",
+              "TCK-1021"
+            ],
+            "hidden_higher_risk": [
+              "TCK-1006",
+              "TCK-1009",
+              "TCK-1018",
+              "TCK-1025"
+            ]
+          }
+        ],
+        [
+          "stage 2 by detected intent (+ input routing)",
+          {
+            "admitted": [
+              "TCK-1001",
+              "TCK-1004",
+              "TCK-1008",
+              "TCK-1011",
+              "TCK-1012",
+              "TCK-1014",
+              "TCK-1019",
+              "TCK-1026"
+            ],
+            "blocking": [
+              "TCK-1012"
+            ],
+            "hidden_higher_risk": []
+          }
+        ]
+      ],
+      "exact": 16,
+      "tier_underestimated": [],
+      "category_mismatch": [
+        "TCK-1006",
+        "TCK-1009",
+        "TCK-1015",
+        "TCK-1018",
+        "TCK-1021",
+        "TCK-1025"
+      ]
+    },
+    "kb_check": [
+      {
+        "ticket": "TCK-1009",
+        "query": "whole ticket",
+        "corrective_fact": "SSO is Enterprise-only, not on any Cloud plan",
+        "current_rank": 1,
+        "current_in_top_3": 1,
+        "current_chunk": "## What this guide does not cover This excerpt focuses on day-to-day w",
+        "proposed_rank": 1,
+        "proposed_in_top_3": 1,
+        "proposed_chunk": "**What no Cloud plan includes.** Single sign-on (SSO/SAML), detailed a"
+      },
+      {
+        "ticket": "TCK-1006",
+        "query": "whole ticket",
+        "corrective_fact": "SSO is Enterprise-only, not on any Cloud plan",
+        "current_rank": 4,
+        "current_in_top_3": 0,
+        "current_chunk": "## What this guide does not cover This excerpt focuses on day-to-day w",
+        "proposed_rank": 1,
+        "proposed_in_top_3": 1,
+        "proposed_chunk": "| Plan | Price | Message credits | Team members | Apps | Knowledge doc"
+      },
+      {
+        "ticket": "TCK-1006",
+        "query": "sub-question",
+        "corrective_fact": "SSO is Enterprise-only, not on any Cloud plan",
+        "current_rank": 1,
+        "current_in_top_3": 1,
+        "current_chunk": "## What this guide does not cover This excerpt focuses on day-to-day w",
+        "proposed_rank": 2,
+        "proposed_in_top_3": 1,
+        "proposed_chunk": "**What no Cloud plan includes.** Single sign-on (SSO/SAML), detailed a"
+      },
+      {
+        "ticket": "TCK-1005",
+        "query": "whole ticket",
+        "corrective_fact": "support levels are not documented for any plan",
+        "current_rank": null,
+        "current_in_top_3": 0,
+        "current_chunk": "",
+        "proposed_rank": 1,
+        "proposed_in_top_3": 1,
+        "proposed_chunk": "**What no Cloud plan includes.** Single sign-on (SSO/SAML), detailed a"
+      },
+      {
+        "ticket": "TCK-1012",
+        "query": "whole ticket",
+        "corrective_fact": "community and self-hosted provider plugins exist",
+        "current_rank": 2,
+        "current_in_top_3": 1,
+        "current_chunk": "Model providers unrelated to standard chat/completion \u2014 for example se",
+        "proposed_rank": 2,
+        "proposed_in_top_3": 1,
+        "proposed_chunk": "Model providers unrelated to standard chat/completion \u2014 for example se"
+      },
+      {
+        "ticket": "TCK-1015",
+        "query": "whole ticket",
+        "corrective_fact": "billing is per workspace, not per seat",
+        "current_rank": 8,
+        "current_in_top_3": 0,
+        "current_chunk": "## 4. Billing, Plans, and Limits Dify Cloud is billed per **workspace*",
+        "proposed_rank": 5,
+        "proposed_in_top_3": 0,
+        "proposed_chunk": "**Seats and price.** Because Dify Cloud is billed per workspace, not p"
+      },
+      {
+        "ticket": "TCK-1015",
+        "query": "sub-question",
+        "corrective_fact": "billing is per workspace, not per seat",
+        "current_rank": 2,
+        "current_in_top_3": 1,
+        "current_chunk": "## 4. Billing, Plans, and Limits Dify Cloud is billed per **workspace*",
+        "proposed_rank": 1,
+        "proposed_in_top_3": 1,
+        "proposed_chunk": "**Seats and price.** Because Dify Cloud is billed per workspace, not p"
+      },
+      {
+        "ticket": "TCK-1021",
+        "query": "whole ticket",
+        "corrective_fact": "empty retrieval is not a propagation delay",
+        "current_rank": 1,
+        "current_in_top_3": 1,
+        "current_chunk": "Before publishing an app that uses a dataset, the **Hit Testing** / re",
+        "proposed_rank": 1,
+        "proposed_in_top_3": 1,
+        "proposed_chunk": "**Empty retrieval is not a propagation delay.** If a retrieval step re"
+      },
+      {
+        "ticket": "TCK-1021",
+        "query": "sub-question",
+        "corrective_fact": "empty retrieval is not a propagation delay",
+        "current_rank": 1,
+        "current_in_top_3": 1,
+        "current_chunk": "Before publishing an app that uses a dataset, the **Hit Testing** / re",
+        "proposed_rank": 1,
+        "proposed_in_top_3": 1,
+        "proposed_chunk": "**Empty retrieval is not a propagation delay.** If a retrieval step re"
+      }
+    ],
+    "gates": [
+      {
+        "gate": "Guardrail recall on critical failures (C3-gen)",
+        "raw_rate": "3/26 (11.5%; upper 29.0%)",
+        "target_escaped": 0.005,
+        "required_recall": 0.9566666666666667,
+        "required_recall_conservative": 0.9827445146796201,
+        "evidence": "29/29 caught (sample 3/3, held-out 26/26)",
+        "demonstrated_recall_lower": 0.8830264055344442,
+        "positives_needed": 85,
+        "positives_needed_conservative": 219,
+        "status": "NOT MET"
+      },
+      {
+        "gate": "Guardrail recall on release-blocking failures (C3-gen)",
+        "raw_rate": "6/26 (23.1%; upper 42.1%)",
+        "target_escaped": 0.02,
+        "required_recall": 0.9133333333333333,
+        "required_recall_conservative": 0.9524397524194969,
+        "evidence": "51/51 caught (sample 6/6, held-out 45/45)",
+        "demonstrated_recall_lower": 0.9299509861127319,
+        "positives_needed": 41,
+        "positives_needed_conservative": 77,
+        "status": "MET on offline evidence"
+      }
+    ],
+    "shadow_demo": {
+      "n": 26,
+      "synthetic": 26,
+      "would_auto_send": "17/26 (65%; 95% CI 46%\u201381%)",
+      "guardrail_recall": "6/6 (100%; 95% CI 61%\u2013100%)",
+      "false_hold": "2/16 (12%; 95% CI 3%\u201336%)",
+      "escaped_ids": [],
+      "untagged": 0,
+      "retrieval_logged": "0/26 (0%; 95% CI 0%\u201313%)",
+      "reviewer_overrode_guardrail": [
+        "TCK-1010",
+        "TCK-1018"
+      ],
+      "by_tier": {
+        "high": {
+          "drafts": 16,
+          "would_send": 10,
+          "escaped": 0
+        },
+        "low": {
+          "drafts": 5,
+          "would_send": 4,
+          "escaped": 0
+        },
+        "medium": {
+          "drafts": 5,
+          "would_send": 3,
+          "escaped": 0
+        }
+      },
+      "gates": [
+        {
+          "gate": "Escaped critical rate (shadow)",
+          "target_escaped": 0.005,
+          "observed": "0/17",
+          "upper_bound": 0.18432366037156456,
+          "drafts_needed_if_zero_escapes": 765,
+          "drafts_needed_if_one_escape": 1130,
+          "status": "NOT MET"
+        },
+        {
+          "gate": "Escaped release-blocking rate (shadow)",
+          "target_escaped": 0.02,
+          "observed": "0/17",
+          "upper_bound": 0.18432366037156456,
+          "drafts_needed_if_zero_escapes": 189,
+          "drafts_needed_if_one_escape": 280,
+          "status": "NOT MET"
+        }
+      ],
+      "audit": [
+        [
+          "TCK-1010",
+          "approved unchanged a draft the system would not auto-send"
+        ],
+        [
+          "TCK-1015",
+          "large edit (49% changed) tagged minor"
+        ],
+        [
+          "TCK-1018",
+          "approved unchanged a draft the system would not auto-send"
+        ]
+      ]
+    }
   }
 }

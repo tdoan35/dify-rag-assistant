@@ -1,0 +1,104 @@
+{
+  "ticket_id": "H60",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0614468,
+    "duration_ms": 8373,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4941,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1073,
+      "output_tokens_details": {
+        "thinking_tokens": 103
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1073,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What settings control how much context the retrieval node returns (too much at some times, almost nothing at others)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "top_k sets the maximum number of chunks returned by the retrieval node.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "top_k (how many chunks to return)"
+      },
+      {
+        "claim": "The score threshold, if enabled, discards chunks scoring below the cutoff even if they would otherwise be within top_k.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "an optional score threshold (chunks scoring below it are discarded even if they would otherwise be in the top_k)"
+      },
+      {
+        "claim": "To get less context, lower top_k or raise the score threshold.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "top_k (how many chunks to return), an optional score threshold (chunks scoring below it are discarded"
+      },
+      {
+        "claim": "Getting almost nothing back may be caused by a threshold set too high or the query not matching much in the dataset.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A retrieval step that returns no results is most often explained by the score threshold being set too high, the document still being mid-indexing, or the query simply not matching any ingested content"
+      },
+      {
+        "claim": "There is no way to see the actual similarity scores; tuning must be done by trial and error in the live app.",
+        "claim_type": "technical",
+        "verdict": "contradicted",
+        "guide_evidence": "the Hit Testing / retrieval-test panel on the dataset page lets a builder type a sample query and see exactly which chunks would be retrieved and their similarity scores, without needing to run the full app"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "major",
+    "failure_modes": [
+      "contradicts_guide",
+      "overconfident_negative"
+    ],
+    "rationale": "The explanations of top_k and score threshold are accurate. But the final sentence says there's no way to see similarity scores. That contradicts the guide: the Hit Testing panel shows the retrieved chunks and their similarity scores without running the full app. This false negative capability claim would push Felix into needless trial and error in the live app, and the answer also leaves out reranking and the possibility that a document is still mid-indexing."
+  }
+}

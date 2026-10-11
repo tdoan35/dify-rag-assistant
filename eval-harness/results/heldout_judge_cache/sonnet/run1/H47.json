@@ -1,0 +1,110 @@
+{
+  "ticket_id": "H47",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0364303,
+    "duration_ms": 8813,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 5384,
+      "cache_read_input_tokens": 9363,
+      "output_tokens": 1395,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 926,
+          "cache_read_input_tokens": 7109,
+          "cache_creation_input_tokens": 529,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 529
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How many people can be on the workspace if they stay on Professional?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Is a team of 5 workable on Professional (implied: what are the options)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Professional is capped at 3 team members per workspace.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB | No Dify-imposed API rate limit |"
+      },
+      {
+        "claim": "A team of 5 would need to move to Team (staying on Professional with 5 active people isn't possible).",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Each workspace plan caps how many members can be active at once"
+      },
+      {
+        "claim": "Team supports up to 50 members.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Team | $159/workspace/month ($1,590/year) | 10,000 credits/month | 50 |"
+      },
+      {
+        "claim": "Team costs $159/workspace/month.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Team | $159/workspace/month ($1,590/year) |"
+      },
+      {
+        "claim": "If you upgrade this week, Team is discounted for your first three months.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Invents a time-limited promotional discount that Dify has not offered, which could create false billing expectations."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "unsupported_commercial_claim"
+    ],
+    "rationale": "The core answer is correct and grounded: Professional allows 3 members, and Team allows 50 for $159/workspace/month. The answer also promises a first-three-months discount for upgrading this week, which the guide never mentions. That is a fabricated pricing promise, so it is a major unsupported commercial claim and the answer shouldn't be sent as written."
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "ticket_id": "H43",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0582028,
+    "duration_ms": 7450,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4903,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 926,
+      "output_tokens_details": {
+        "thinking_tokens": 194
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 926,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Do I need to delete and re-upload the whole document after fixing a typo, or will it just update?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "There is no need to delete the document and re-upload it.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "When a document is edited and saved, it is re-processed through these same four stages"
+      },
+      {
+        "claim": "An edited and saved document is automatically re-processed through parse, enrich, chunk, and re-index before its chunks are available for retrieval again.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "When a document is edited and saved, it is re-processed through these same four stages before its chunks are available for retrieval again"
+      },
+      {
+        "claim": "While it is reprocessing, the document's content won't be fully searchable, so the customer should avoid testing retrieval until it finishes.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "a newly indexed document is not searchable mid-processing"
+      },
+      {
+        "claim": "Small documents usually finish re-processing in under a minute.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The main answer is correct and matches the guide: an edited and saved document goes back through all four pipeline stages and can't be searched until processing finishes. The only problem is the timing claim (\"usually under a minute\"), which the guide doesn't support but which is harmless."
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "ticket_id": "H22",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0336994,
+    "duration_ms": 8947,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4905,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1385,
+      "output_tokens_details": {
+        "thinking_tokens": 416
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1385,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why is the dataset API returning 401 Unauthorized when the same key works for the chatbot app?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "How can the customer fix it and upload a document via the dataset API?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "App API keys and dataset (knowledge base) API keys are two separate kinds of key and cannot be swapped.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Dify issues two different kinds of API keys, and they are **not interchangeable**"
+      },
+      {
+        "claim": "The 401 is expected because the customer is using the app key against the dataset API.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A fresh key that returns a `401 Unauthorized` almost always means one of: the wrong key type was used for the endpoint being called (app key vs. dataset key)"
+      },
+      {
+        "claim": "The chatbot's key, created from its API Access panel, only works on that app's endpoint.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "An app's API key only works for that one app"
+      },
+      {
+        "claim": "To call the dataset API, create a key on the dataset's detail page under Service API.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "These are created from the dataset's own detail page, under its **Service API** panel"
+      },
+      {
+        "claim": "The dataset key is scoped to that knowledge base.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "are scoped only to the knowledge base(s) they were created against"
+      },
+      {
+        "claim": "Using the dataset key in the upload request instead of the app key will work.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Dataset (knowledge base) API keys authenticate calls to the Knowledge/dataset API \u2014 creating datasets, uploading documents"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "none",
+    "failure_modes": [],
+    "rationale": "The answer correctly identifies the wrong key type as the cause of the 401. Since the app key already works for the chatbot, the guide's other causes (whitespace, deleted app) are effectively ruled out. The fix steps match the guide, and the tone is professional."
+  }
+}

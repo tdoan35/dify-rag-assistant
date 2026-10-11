@@ -1,0 +1,88 @@
+{
+  "ticket_id": "H27",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0648108,
+    "duration_ms": 11359,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4809,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1294,
+      "output_tokens_details": {
+        "thinking_tokens": 567
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4809,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1294,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4809,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4809
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Is there a way to test what my knowledge base will retrieve before plugging it into a live app?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Dify doesn't have a way to preview retrieval outside a running app.",
+        "claim_type": "technical",
+        "verdict": "contradicted",
+        "guide_evidence": "the Hit Testing / retrieval-test panel on the dataset page lets a builder type a sample query and see exactly which chunks would be retrieved and their similarity scores, without needing to run the full app"
+      },
+      {
+        "claim": "The best approach is to publish a test app with the retrieval node and send it sample questions.",
+        "claim_type": "procedural",
+        "verdict": "contradicted",
+        "guide_evidence": "Before publishing an app that uses a dataset, the Hit Testing / retrieval-test panel on the dataset page lets a builder type a sample query"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "The answer wrongly denies a documented feature (Hit Testing), so the customer would be misinformed."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "overconfident_negative",
+      "contradicts_guide"
+    ],
+    "rationale": "The guide says the dataset page has a Hit Testing / retrieval-test panel that shows which chunks would be retrieved, with their scores, without running the full app. The answer wrongly says this capability doesn't exist and recommends publishing a test app as a workaround. This is an overconfident negative claim about what the product can do, which contradicts the guide, so it rates as major rather than critical because it isn't about entitlements, billing, or a root cause."
+  }
+}

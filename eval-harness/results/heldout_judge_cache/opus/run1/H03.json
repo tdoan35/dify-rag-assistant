@@ -1,0 +1,105 @@
+{
+  "ticket_id": "H03",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.06642680000000001,
+    "duration_ms": 11453,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4881,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1346,
+      "output_tokens_details": {
+        "thinking_tokens": 351
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4881,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1346,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4881,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4881
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How do I connect my own OpenAI API key instead of using the built-in Dify credits?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "How can I avoid using up my free (Sandbox) credits too quickly?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Bring-your-own-key is not available on the free Sandbox plan.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "model calls on Dify-hosted credits stop working until the workspace either connects its own API key for that provider or waits for the next monthly credit reset (paid plans) \u2014 Sandbox credits do not reset."
+      },
+      {
+        "claim": "Connecting your own OpenAI key is a Professional and Team feature, so you need to upgrade first.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": "To move beyond the included credits, or to use a provider not offered on Dify-hosted credits, a workspace connects its own model provider"
+      },
+      {
+        "claim": "Go to Settings > Model Provider, install the OpenAI plugin and enter your key.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Go to Settings \u2192 Model Provider... Install the plugin for the desired provider... Enter the credentials the provider requires \u2014 typically an API key"
+      },
+      {
+        "claim": "After connecting the key, OpenAI calls are billed by OpenAI instead of drawing down Dify message credits.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "calls to that provider's models are billed directly by the provider and no longer draw down the workspace's Dify message credits"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_entitlement",
+      "contradicts_guide",
+      "unsupported_commercial_claim",
+      "overconfident_negative"
+    ],
+    "rationale": "The answer says bring-your-own-key is limited to the Professional and Team plans. The guide says no such thing. It describes any workspace connecting its own provider, and it treats connecting a key as a fix when Sandbox credits run out. Because of this false restriction, the customer could pay for a plan they don't need, which makes it a critical entitlement error. The setup steps and the billing effect are correct, but the answer also leaves out the step of setting the provider's model as the default in the app's Model settings."
+  }
+}

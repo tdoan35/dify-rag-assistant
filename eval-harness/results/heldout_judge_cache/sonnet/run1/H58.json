@@ -1,0 +1,123 @@
+{
+  "ticket_id": "H58",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0431869,
+    "duration_ms": 11831,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 5771,
+      "cache_read_input_tokens": 9449,
+      "output_tokens": 1915,
+      "output_tokens_details": {
+        "thinking_tokens": 392
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5771,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1225,
+          "cache_read_input_tokens": 7195,
+          "cache_creation_input_tokens": 830,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 830
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What retrieval node settings control why it sometimes returns far more context than expected?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "What settings/causes explain why retrieval sometimes returns almost nothing?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "top_k and the score threshold are the retrieval node settings that control how much context is returned.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Retrieval behavior in a live app is governed by settings on the retrieval node: **top_k** (how many chunks to return), an optional **score threshold**"
+      },
+      {
+        "claim": "top_k sets the maximum number of chunks returned.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "**top_k** (how many chunks to return)"
+      },
+      {
+        "claim": "The score threshold discards any chunk scoring above the cutoff, even if it would otherwise be within top_k.",
+        "claim_type": "technical",
+        "verdict": "contradicted",
+        "guide_evidence": "chunks scoring below it are discarded even if they would otherwise be in the top_k"
+      },
+      {
+        "claim": "If too much context is returned, lowering top_k or raising the score threshold can help.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "an optional **score threshold** (chunks scoring below it are discarded even if they would otherwise be in the top_k)"
+      },
+      {
+        "claim": "Almost nothing being returned may be because the threshold is set too high, or the query doesn't match much in the dataset.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "most often explained by the score threshold being set too high, the document still being mid-indexing, or the query simply not matching any ingested content"
+      },
+      {
+        "claim": "The threshold being too high is 'for how your embeddings are scoring'.",
+        "claim_type": "customer_context",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Hit Testing on the dataset lets you try queries and see actual scores before tuning.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "the **Hit Testing** / retrieval-test panel on the dataset page lets a builder type a sample query and see exactly which chunks would be retrieved and their similarity scores"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "States the score threshold semantics backwards (discards chunks above the cutoff), which could lead Felix to misconfigure the node and is internally inconsistent with the later advice."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "contradicts_guide",
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The answer correctly identifies top_k, the score threshold and Hit Testing. But it says the threshold discards chunks scoring above the cutoff, while the guide says chunks below it are discarded. That reverses the core mechanic the customer asked about and conflicts with the answer's own later advice. It also omits reranking and the mid-indexing cause."
+  }
+}

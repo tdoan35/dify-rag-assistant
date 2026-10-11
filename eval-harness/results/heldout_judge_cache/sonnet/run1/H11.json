@@ -1,0 +1,118 @@
+{
+  "ticket_id": "H11",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0324534,
+    "duration_ms": 8927,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4856,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1280,
+      "output_tokens_details": {
+        "thinking_tokens": 309
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1280,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How do I add a new teammate to our workspace?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Any implications of being on the Professional plan (implied member limits)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Invite a new member via Settings > Members in the workspace.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "owners and admins can invite additional members from **Settings \u2192 Members**"
+      },
+      {
+        "claim": "The invite is sent by email.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "The invitee can be assigned a role of Admin, Editor, or Normal member.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "new invitees are assigned a role (Owner, Admin, Editor, or Normal member)"
+      },
+      {
+        "claim": "Professional caps a workspace at 3 team members.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 |"
+      },
+      {
+        "claim": "Upgrading to Team would allow the new invite to be added if the workspace is at its member limit.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Each workspace plan caps how many members can be active at once"
+      },
+      {
+        "claim": "Team plan includes unlimited members.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "| Team | $159/workspace/month ($1,590/year) | 10,000 credits/month | 50 | 200 |"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "States Team plan has unlimited members, which contradicts the guide's 50-member cap; could mislead a purchase decision."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_entitlement",
+      "contradicts_guide",
+      "unsupported_commercial_claim"
+    ],
+    "rationale": "The procedural steps and the Professional 3-member cap are correct. However, the answer says Team has \"unlimited members\", but the guide caps Team at 50. A customer deciding whether to upgrade could act on that wrong entitlement, so this is critical. The \"by email\" detail is also unsupported, though harmless."
+  }
+}

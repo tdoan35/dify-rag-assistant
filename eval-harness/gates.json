@@ -1,0 +1,9 @@
+{
+  "about": "Release-gate targets used by `python run_eval.py score` (section 'Release gates'). The values below are PLACEHOLDERS chosen to illustrate the arithmetic; Support leadership should replace them and fill in set_by.",
+  "set_by": "",
+  "target_escaped_critical_rate": 0.005,
+  "target_escaped_blocking_rate": 0.02,
+  "illustrative_monthly_auto_send_volume": 2000,
+  "audit_sample_rate": 0.05,
+  "judge_positives_per_failure_mode": 100
+}

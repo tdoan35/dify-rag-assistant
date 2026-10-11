@@ -1,0 +1,102 @@
+{
+  "ticket_id": "H46",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0279094,
+    "duration_ms": 5133,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4810,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 844,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4810,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 844,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4810,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4810
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How many people can be on the workspace if they stay on Professional (team of 5)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Professional includes 3 team members.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB | No Dify-imposed API rate limit |"
+      },
+      {
+        "claim": "You can buy additional seats for the other 2 people and stay on Professional.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": "Dify Cloud is billed per **workspace**, not per individual seat"
+      },
+      {
+        "claim": "Additional seats can be purchased from the Billing page.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "Only the workspace **owner** and **admins** can open the Billing page and manage a subscription."
+      },
+      {
+        "claim": "Each extra seat is billed monthly.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": "Dify Cloud is billed per **workspace**, not per individual seat"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Invents an add-on seat purchase option that does not exist in the guide, which the customer might act on."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "wrong_entitlement",
+      "unsupported_commercial_claim",
+      "fabricated_ui_path",
+      "missed_premise_correction"
+    ],
+    "rationale": "The guide says Professional caps team members at 3 and billing is per workspace, not per seat. The answer states the cap correctly, then invents a purchasable extra-seat option with monthly billing. It never tells Hana that 5 people need a higher tier (Team allows 50), and the guide does not mention this as an option. This is an unsupported commercial promise that could lead her to the wrong plan decision."
+  }
+}

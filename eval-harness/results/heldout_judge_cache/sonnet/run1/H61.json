@@ -1,0 +1,101 @@
+{
+  "ticket_id": "H61",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.028785400000000003,
+    "duration_ms": 5480,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4909,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 892,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4909,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 892,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4909
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What retrieval node settings control how much context is returned (too much vs. almost nothing)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "top_k is a retrieval-node setting that controls the maximum number of chunks returned.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "**top_k** (how many chunks to return)"
+      },
+      {
+        "claim": "The optional score threshold drops any chunk scoring below the cutoff, even if it would be in the top_k.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "an optional **score threshold** (chunks scoring below it are discarded even if they would otherwise be in the top_k)"
+      },
+      {
+        "claim": "If you get too much context, lower top_k or raise the threshold.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "**top_k** (how many chunks to return), an optional **score threshold** (chunks scoring below it are discarded"
+      },
+      {
+        "claim": "If you get almost nothing, the threshold may be too high or the query may not match much in the dataset.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "most often explained by the score threshold being set too high, the document still being mid-indexing, or the query simply not matching any ingested content"
+      },
+      {
+        "claim": "Hit Testing on the dataset lets you try queries and see the real scores before tuning.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "the **Hit Testing** / retrieval-test panel on the dataset page lets a builder type a sample query and see exactly which chunks would be retrieved and their similarity scores"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "none",
+    "failure_modes": [],
+    "rationale": "The answer correctly identifies top_k and score threshold as the controlling settings, gives guide-supported tuning advice and diagnoses for sparse results, and points to Hit Testing. It omits reranking and mid-indexing as other factors, but nothing in it is unsupported or harmful."
+  }
+}

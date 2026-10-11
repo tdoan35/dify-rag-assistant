@@ -175,15 +175,18 @@ For C1, results are shown across the threshold sweep rather than at a single tun
 
 ## 8. Release gates: from agent-assist to auto-send
 
-Auto-send is enabled **per category, in stages**, only when all of these hold:
+> **Revised after review** (`docs/additions.md`). Stages are defined by **detected intent**, not the single-label `category` column (results §8). Gates 1–2 are now derived from escaped-rate targets that Support leadership sets in `eval-harness/gates.json` (results §10), and measured on agent-assist shadow logs (results §11). For example, "zero critical failures in 200 tickets" would only bound the critical rate at 1.9%.
 
-1. **Zero critical failures** on a risk-stratified evaluation set of **200+ tickets**, weighted toward billing, entitlement, security and multi-part questions.
-2. The **upper Wilson bound** on the release-blocking rate is below a threshold agreed with Support leadership.
+Auto-send is enabled **per detected intent, in stages**, only when all of these hold:
+
+1. **Escaped critical rate below target, measured in shadow mode.** Among drafts the configuration *would* have auto-sent during agent-assist, the Wilson upper bound on drafts a reviewer had to fix materially must be below the target. At a 0.5% target that takes about 765 would-send drafts with zero critical escapes.
+2. **Escaped release-blocking rate below its target**, measured the same way. Before the shadow pilot, guardrail recall on the held-out fault-injection set must already clear the recall the target implies (results §6, §10).
 3. A **validated judge**: true-positive and true-negative rates measured against 100–200 human-labelled examples per failure mode.
 4. **Pre-generation routing live in the Dify app**: a Question Classifier node for out-of-scope and multi-part tickets, a retrieval **score threshold**, and IF/ELSE handoff to a human when retrieval is empty or low-scoring ([Dify Knowledge Retrieval node](https://docs.dify.ai/en/cloud/use-dify/nodes/knowledge-retrieval)).
 5. **Retrieved-chunk logging**, so retrieval and generation can be evaluated separately.
 6. **AI-response disclosure** in every customer-facing reply.
-7. **Staged rollout**: low-risk how-to categories first (for example Knowledge Pipeline), with live monitoring, sampled human review, and rollback.
+7. **Staged rollout**: low-risk how-to intents first (for example Knowledge Pipeline), with live monitoring, sampled human review using the audit policy in `harness/shadow.py`, and rollback.
+8. **Reviewer view during agent-assist**: the judge's claim-level flags are shown beside each draft (`results/review_cards.md`), so reviewers check specific claims instead of approving fluent text on autopilot.
 
 ## 9. Deliverables map
 

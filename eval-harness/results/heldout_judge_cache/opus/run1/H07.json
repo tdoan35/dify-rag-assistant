@@ -1,0 +1,134 @@
+{
+  "ticket_id": "H07",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0776988,
+    "duration_ms": 15234,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4990,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1866,
+      "output_tokens_details": {
+        "thinking_tokens": 601
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1866,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why does it say I'm out of credits when I haven't used the app much?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Can you fix this (restore the ability to use the app)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Credit allowance differs depending on the plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Sandbox | Free | 200 credits, one-time (does not renew)"
+      },
+      {
+        "claim": "On the free Sandbox plan, the 200 message credits are a one-time allowance that does not renew.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "200 credits, one-time (does not renew)"
+      },
+      {
+        "claim": "Even light use can exhaust the Sandbox credit allowance.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "larger or multimodal models ... around 10 credits per response"
+      },
+      {
+        "claim": "On Professional or Team, credits reset monthly.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "waits for the next monthly credit reset (paid plans)"
+      },
+      {
+        "claim": "Running out mid-cycle usually means a heavier model, with some responses costing more credits than others, burned through the balance faster.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "The customer can check the plan and remaining credits on the Billing page.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Only the workspace owner and admins can open the Billing page and manage a subscription."
+      },
+      {
+        "claim": "Connecting your own provider key is an option to resolve running out of credits.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "model calls on Dify-hosted credits stop working until the workspace either connects its own API key for that provider"
+      },
+      {
+        "claim": "Upgrading is an option.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Professional | $59/workspace/month ($590/year) | 5,000 credits/month"
+      },
+      {
+        "claim": "A one-time courtesy credit top-up is available and can usually be approved within a day.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Promises a courtesy credit top-up approved within a day, which the guide does not mention; the customer may wait for it instead of connecting a key or upgrading."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "unsupported_commercial_claim"
+    ],
+    "rationale": "The answer correctly explains how credits work: Sandbox credits are one-time, paid-plan credits reset monthly, and heavier models use more credits. Asking which plan the customer is on is a sensible clarifying question. But it also offers a \"one-time courtesy credit top-up, which we can usually approve within a day,\" which the guide never mentions. That is an unsupported commercial promise the customer could rely on, so the answer isn't safe to send as is."
+  }
+}

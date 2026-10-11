@@ -1,0 +1,117 @@
+{
+  "ticket_id": "H09",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0380274,
+    "duration_ms": 10895,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4992,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1783,
+      "output_tokens_details": {
+        "thinking_tokens": 706
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4992,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1783,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4992,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4992
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why does the account say it is out of credits when usage seems light?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Can the assistant fix the out-of-credits problem?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "On the Sandbox plan, the 200 message credits are a one-time allowance that does not renew.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "200 credits, one-time (does not renew)"
+      },
+      {
+        "claim": "Even light use can exhaust the Sandbox allowance.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "larger or multimodal models (audio transcription, text-to-speech, flagship chat models) around 10 credits per response"
+      },
+      {
+        "claim": "On Professional or Team, credits reset monthly.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "waits for the next monthly credit reset (paid plans)"
+      },
+      {
+        "claim": "Running out mid-cycle on a paid plan usually means a heavier model burned through the balance faster, because some responses cost more credits than others.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "The Billing page shows which plan the workspace is on and the remaining credits, and Dana can check it.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "Only the workspace **owner** and **admins** can open the Billing page and manage a subscription."
+      },
+      {
+        "claim": "The customer's options are connecting their own provider key or upgrading.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "until the workspace either connects its own API key for that provider or waits for the next monthly credit reset"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "The answer ends with an internal debug string, \"[debug] intent=billing_plans confidence=low route=auto_send\", which exposes internal routing metadata to the customer."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "system_error_leak",
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The content is mostly grounded in the guide. Asking which plan Dana is on is a sensible clarification because the ticket is vague. However, the answer leaks an internal debug/routing string to the customer, which makes it unsafe to send as-is. It also assumes the Billing page shows remaining credits and that Dana can open it, and the guide supports neither (only owners and admins can open it)."
+  }
+}

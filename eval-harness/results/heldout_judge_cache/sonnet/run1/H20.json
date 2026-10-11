@@ -1,0 +1,108 @@
+{
+  "ticket_id": "H20",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0429258,
+    "duration_ms": 10676,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 9358,
+      "output_tokens": 1791,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 897,
+          "cache_read_input_tokens": 7104,
+          "cache_creation_input_tokens": 1168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why is the dataset API returning 401 Unauthorized when the same key works for the chatbot app?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "How can Sam fix it so the document upload works?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "A 401 on the dataset API usually means the key has expired.",
+        "claim_type": "diagnostic",
+        "verdict": "contradicted",
+        "guide_evidence": "A fresh key that returns a `401 Unauthorized` almost always means one of: the wrong key type was used for the endpoint being called (app key vs. dataset key)"
+      },
+      {
+        "claim": "Keys time out if they haven't been used for a while.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Sam should generate a fresh secret key from the same app's API Access panel to use for the dataset upload.",
+        "claim_type": "procedural",
+        "verdict": "contradicted",
+        "guide_evidence": "A dataset key will not authenticate a request to an app endpoint, and an app key will not authenticate a dataset-API request."
+      },
+      {
+        "claim": "Creating a new key from the app's panel and retrying the upload should make it go through.",
+        "claim_type": "technical",
+        "verdict": "contradicted",
+        "guide_evidence": "These are created from the dataset's own detail page, under its **Service API** panel"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Gives incorrect troubleshooting steps that send the customer to the wrong panel and would leave the 401 unresolved."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_root_cause",
+      "contradicts_guide",
+      "fabricated_ui_path",
+      "unsupported_technical_detail",
+      "missed_premise_correction"
+    ],
+    "rationale": "The guide's likely cause is a key-type mismatch: an app key does not authenticate dataset API requests, which fits Sam's symptoms. The answer blames key expiry, which the guide never mentions. It then sends Sam to the app's API Access panel, which would produce another app key that fails again. The correct fix is to create a dataset key under the dataset's Service API panel."
+  }
+}

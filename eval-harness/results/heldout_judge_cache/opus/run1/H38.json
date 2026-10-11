@@ -1,0 +1,118 @@
+{
+  "ticket_id": "H38",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0682908,
+    "duration_ms": 12186,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4934,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1418,
+      "output_tokens_details": {
+        "thinking_tokens": 379
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1418,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why did my credit balance drop much faster this week even though my app usage did not change?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Credits are not charged at a flat rate per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Message credits are not consumed at a flat rate."
+      },
+      {
+        "claim": "Lighter models can cost as little as 1 credit per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "lighter models (for example smaller GPT variants) consume as little as 1 credit per response"
+      },
+      {
+        "claim": "Mid-tier models cost around 5 credits per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "mid-tier models around 5 credits"
+      },
+      {
+        "claim": "Heavier or multimodal models (transcription, text-to-speech, flagship chat models) cost around 25 credits per response.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "larger or multimodal models (audio transcription, text-to-speech, flagship chat models) around 10 credits per response"
+      },
+      {
+        "claim": "A shift in model mix toward heavier models could explain faster credit burn without any change in request volume.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "Heavier-model use alone would explain the faster credit burn.",
+        "claim_type": "diagnostic",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Checking usage logs for which model handled the most requests will confirm the cause.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "contradicts_guide",
+      "unsupported_commercial_claim",
+      "fabricated_ui_path",
+      "overstatement"
+    ],
+    "rationale": "The diagnosis (credit cost varies by model, so heavier models use up credits faster) is grounded in the guide, but the answer says heavier or multimodal models cost about 25 credits per response, while the guide says about 10. This wrong billing figure could lead the customer to misjudge their spending or change their plan or setup. The answer also points the customer to 'usage logs', which the guide never mentions, and calls model mix the sole explanation more confidently than the guide supports."
+  }
+}

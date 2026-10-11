@@ -1,0 +1,101 @@
+{
+  "ticket_id": "H55",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.028761400000000003,
+    "duration_ms": 5343,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4878,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 902,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4878,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 902,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4878,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4878
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What happens when the Sandbox workspace's 200 credits run out \u2014 does the app just stop working?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Model calls that rely on Dify-hosted credits stop working once the Sandbox credits are used up.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Once a workspace's credits are used up, model calls on Dify-hosted credits stop working until the workspace either connects its own API key for that provider or waits for the next monthly credit reset (paid plans)"
+      },
+      {
+        "claim": "Sandbox includes 200 one-time credits that do not reset, unlike paid plans.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "200 credits, one-time (does not renew); Sandbox credits do not reset."
+      },
+      {
+        "claim": "Connecting your own API key for a provider makes calls bill directly to that provider instead of Dify credits, keeping the app running.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Once a workspace supplies its own key for a provider, calls to that provider's models are billed directly by the provider and no longer draw down the workspace's Dify message credits."
+      },
+      {
+        "claim": "Upgrading to Professional gives you unlimited message credits.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "Professional | $59/workspace/month ($590/year) | 5,000 credits/month"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "States Professional includes unlimited message credits, which is false and could lead the customer to buy a plan on a wrong premise."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_entitlement",
+      "contradicts_guide",
+      "unsupported_commercial_claim"
+    ],
+    "rationale": "The first part of the answer (calls stop, no reset, bring-your-own-key option) is accurate. However, it claims Professional gives \"unlimited message credits\", but the guide says Professional has 5,000 credits/month. This is a plan entitlement error that a customer could act on by purchasing the wrong plan."
+  }
+}

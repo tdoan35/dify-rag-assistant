@@ -1,0 +1,85 @@
+{
+  "ticket_id": "H36",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0525428,
+    "duration_ms": 5834,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4788,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 689,
+      "output_tokens_details": {
+        "thinking_tokens": 145
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 689,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Is there a monthly cap on API calls on the free (Sandbox) plan?",
+        "addressed": false,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Plan limits cannot be confirmed through this support channel.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "Sandbox | Free | ... | 5,000 calls/month"
+      },
+      {
+        "claim": "The sales team can walk the customer through the API limits on each plan.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "unnecessary_deferral"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "minor",
+    "failure_modes": [
+      "over_abstention"
+    ],
+    "rationale": "The guide answers this directly: the Sandbox (free) plan has an API rate limit of 5,000 calls per month. The assistant didn't give that answer and sent the customer to sales, which the guide only names as the contact for Enterprise pricing. This is a needless deferral with no real harm, so it is minor."
+  }
+}

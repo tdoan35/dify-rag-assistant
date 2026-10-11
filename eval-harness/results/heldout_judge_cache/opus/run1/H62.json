@@ -1,0 +1,105 @@
+{
+  "ticket_id": "H62",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.05701080000000001,
+    "duration_ms": 7020,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4839,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 892,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4839,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 892,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4839,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4839
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How many API calls per month on the free (Sandbox) plan?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Can a Professional subscription be paid by bank transfer?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Sandbox workspaces are capped at 5,000 API calls per month.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Sandbox | Free | ... | 5,000 calls/month"
+      },
+      {
+        "claim": "Professional removes the Dify-imposed API rate limit.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Professional | ... | No Dify-imposed API rate limit"
+      },
+      {
+        "claim": "Professional subscriptions can be paid by bank transfer.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "paying by invoice or bank transfer is still being evaluated by Dify and, if it ships, is expected to be limited to annual Team subscriptions only \u2014 it is not available on any plan today"
+      },
+      {
+        "claim": "Bank transfer can be chosen at checkout.",
+        "claim_type": "procedural",
+        "verdict": "contradicted",
+        "guide_evidence": "Payment is by credit card by default; ... it is not available on any plan today"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "contradicts_guide",
+      "wrong_entitlement",
+      "fabricated_ui_path",
+      "missed_premise_correction"
+    ],
+    "rationale": "The answer is wrong about bank transfer, so it isn't safe to send. The API-call limits are right: Sandbox is capped at 5,000 calls a month and Professional has no Dify-imposed limit. But the guide says bank transfer and invoice payment are \"not available on any plan today\", and if they do arrive they're expected only for annual Team plans. Telling Noah he can pick bank transfer at checkout is a billing claim the guide contradicts, and he could act on it, for example by upgrading expecting to pay a way that isn't offered."
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "ticket_id": "H48",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0564148,
+    "duration_ms": 6794,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4822,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 869,
+      "output_tokens_details": {
+        "thinking_tokens": 77
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4822,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 869,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4822,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4822
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How many people can be on the workspace on the Professional plan?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Can a team of 5 stay on Professional?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "A Professional workspace can have at most 3 team members.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3"
+      },
+      {
+        "claim": "The Team plan allows up to 50 members.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Team | $159/workspace/month ($1,590/year) | 10,000 credits/month | 50"
+      },
+      {
+        "claim": "The Team plan costs $159 per workspace per month.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Team | $159/workspace/month"
+      },
+      {
+        "claim": "With 5 people you would need the Team plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Each workspace plan caps how many members can be active at once"
+      },
+      {
+        "claim": "You can't keep 5 active people on Professional without upgrading.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Each workspace plan caps how many members can be active at once"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "none",
+    "failure_modes": [],
+    "rationale": "The guide's plan table directly supports every claim: Professional allows 3 members, and Team allows 50 at $159 per workspace per month. The guide also says plans cap how many members can be active at once, so 5 people need an upgrade. The answer is correct, grounded, complete and does not need escalation."
+  }
+}

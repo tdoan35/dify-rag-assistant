@@ -1,0 +1,113 @@
+{
+  "ticket_id": "H60",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0314974,
+    "duration_ms": 6599,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4947,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1148,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4947,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1148,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4947,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4947
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What settings on the retrieval node control how much context is returned (too much vs. almost nothing)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "top_k sets the maximum number of chunks returned by the retrieval node.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "**top_k** (how many chunks to return)"
+      },
+      {
+        "claim": "The score threshold (optional) discards any chunk scoring below the cutoff even if it would otherwise be within top_k.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "an optional **score threshold** (chunks scoring below it are discarded even if they would otherwise be in the top_k)"
+      },
+      {
+        "claim": "To reduce excess context, lower top_k or raise the score threshold.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "**top_k** (how many chunks to return), an optional **score threshold** (chunks scoring below it are discarded"
+      },
+      {
+        "claim": "Almost nothing returned may be due to the threshold being set too high, or the query not matching much in the dataset.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "most often explained by the score threshold being set too high, the document still being mid-indexing, or the query simply not matching any ingested content"
+      },
+      {
+        "claim": "The threshold may be too high 'for how your embeddings are scoring' (assumes embedding-based scoring).",
+        "claim_type": "customer_context",
+        "verdict": "unsupported",
+        "guide_evidence": "Economical (keyword-based index, free...) or High Quality (vector embeddings via the workspace's embedding model"
+      },
+      {
+        "claim": "There's no way to see the actual similarity scores, so you'll have to tune by trial and error in the live app.",
+        "claim_type": "technical",
+        "verdict": "contradicted",
+        "guide_evidence": "the **Hit Testing** / retrieval-test panel on the dataset page lets a builder type a sample query and see exactly which chunks would be retrieved and their similarity scores, without needing to run the full app."
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Tells the customer incorrectly that similarity scores can't be viewed and that they must tune by trial and error in the live app, steering them away from the Hit Testing panel."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "contradicts_guide",
+      "overconfident_negative",
+      "invented_user_context"
+    ],
+    "rationale": "The answer correctly explains top_k and score threshold, but it flatly claims there is no way to see similarity scores. The guide's Hit Testing panel shows retrieved chunks and their scores without running the app. That is an overconfident negative capability claim that contradicts the guide and sends the customer to a worse workflow. The \"how your embeddings are scoring\" phrasing also assumes vector indexing, which is a minor unsupported detail."
+  }
+}

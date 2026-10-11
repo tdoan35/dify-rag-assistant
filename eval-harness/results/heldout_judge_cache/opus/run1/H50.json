@@ -1,0 +1,114 @@
+{
+  "ticket_id": "H50",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.06493080000000001,
+    "duration_ms": 10420,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4934,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1250,
+      "output_tokens_details": {
+        "thinking_tokens": 235
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1250,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What happens to documents above Professional's limits after downgrading from Team?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "What happens to team member seats above Professional's limits after downgrading from Team?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Nothing gets deleted automatically on downgrade.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "the resources or members above the new plan's cap become inaccessible rather than being deleted"
+      },
+      {
+        "claim": "Anything over Professional's limits becomes inaccessible once the downgrade takes effect.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "the members over the new cap lose workspace access immediately until seats are freed or the plan is upgraded again"
+      },
+      {
+        "claim": "Professional caps knowledge documents at 500.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3 | 50 | 500 | 5 GB"
+      },
+      {
+        "claim": "Professional caps team members at 3.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Professional | $59/workspace/month ($590/year) | 5,000 credits/month | 3"
+      },
+      {
+        "claim": "Access is restored by trimming usage under Professional's limits or upgrading again.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "restoring access requires upgrading again or reducing usage back under the new plan's limits"
+      },
+      {
+        "claim": "If you downgrade mid-cycle, Dify refunds the unused part of your Team subscription to your card.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "unsupported_commercial_claim"
+    ],
+    "rationale": "The answer about downgrade behaviour is accurate: resources become inaccessible, nothing is deleted, the caps are 500 documents and 3 members, and access comes back by trimming usage or upgrading again. However, it adds a promise that a mid-cycle downgrade gets a prorated refund to the customer's card, and the guide says nothing about refunds. Oliver could plausibly time the downgrade expecting money back, so this unsupported billing claim makes the answer critical."
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "ticket_id": "H07",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.030415400000000002,
+    "duration_ms": 6214,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4994,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1021,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4994,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1021,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4994,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4994
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why is the account showing out of credits despite light usage?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Can the assistant fix/restore the credits?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Sandbox plan's 200 message credits are a one-time allowance that doesn't renew.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "200 credits, one-time (does not renew)"
+      },
+      {
+        "claim": "On Professional or Team, credits reset monthly.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "5,000 credits/month"
+      },
+      {
+        "claim": "Running out mid-cycle on paid plans usually means a heavier model burned through credits faster, since responses cost different credit amounts.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "The Billing page shows the workspace's plan and remaining credits.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "Only the workspace **owner** and **admins** can open the Billing page and manage a subscription."
+      },
+      {
+        "claim": "Options include connecting your own provider key.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "until the workspace either connects its own API key for that provider or waits for the next monthly credit reset"
+      },
+      {
+        "claim": "Options include upgrading.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "or the plan is upgraded again"
+      },
+      {
+        "claim": "A one-time courtesy credit top-up is available and can usually be approved within a day.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Promises a courtesy credit top-up with a one-day approval timeframe that the guide does not mention."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "unsupported_commercial_claim"
+    ],
+    "rationale": "The answer correctly explains Sandbox non-renewing credits and variable per-model credit costs, and it appropriately asks which plan the workspace is on. However, it invents a \"one-time courtesy credit top-up\" that is \"usually approved within a day\". The guide doesn't mention this commercial promise, so the answer isn't safe to send as written."
+  }
+}

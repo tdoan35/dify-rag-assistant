@@ -1,0 +1,10 @@
+{
+  "frozen_on": "2026-10-11",
+  "author": "Claude (fault set drafted after reading rules.py; pending human review)",
+  "spec_sha256": "7bf38997b15cc5e74a1c9141b1d6432f9df77b7fcb4b40ee84b580d463a310b7",
+  "guardrail_sha256": {
+    "harness/rules.py": "ec01149d38d75067fda5846774c0844bdd06d7124c96f93eb2b2c5cf8c9568ea",
+    "harness/similarity.py": "0ddd8078c1d3612cf9202563cc01b96202e0c2c53556f4f51bc2abec3cfa555d"
+  },
+  "judge_prompt_fingerprint": "81e24a80cf1e9455"
+}

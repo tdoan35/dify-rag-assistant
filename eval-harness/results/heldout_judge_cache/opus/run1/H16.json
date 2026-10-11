@@ -1,0 +1,109 @@
+{
+  "ticket_id": "H16",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0694428,
+    "duration_ms": 12046,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4908,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1486,
+      "output_tokens_details": {
+        "thinking_tokens": 524
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4908,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1486,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4908,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4908
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Can I use our existing Azure OpenAI deployment instead of regular OpenAI?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Yes, an existing Azure OpenAI deployment can be used in place of regular OpenAI.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "OpenAI, Anthropic, Azure OpenAI, and others are published officially"
+      },
+      {
+        "claim": "Install the Azure OpenAI plugin from Settings > Model Provider or the Marketplace filtered by Models.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Go to **Settings \u2192 Model Provider**, or open the **Marketplace** and filter by \"Models.\""
+      },
+      {
+        "claim": "Azure OpenAI requires an API key, the resource endpoint URL, and the deployment name.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "typically an API key, and for Azure OpenAI, also the resource endpoint URL and deployment name"
+      },
+      {
+        "claim": "After saving, the Azure-hosted model can be set as the default or as a per-app model.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Save, then set that provider's model as the default (or per-app override) under the app's **Model** settings."
+      },
+      {
+        "claim": "Usage is billed through the customer's Azure account.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "calls to that provider's models are billed directly by the provider and no longer draw down the workspace's Dify message credits"
+      },
+      {
+        "claim": "Dify credits back part of the customer's Azure spend as bonus message credits each month.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": true,
+    "customer_safety_issues": [],
+    "severity": "major",
+    "failure_modes": [
+      "unsupported_commercial_claim"
+    ],
+    "rationale": "The guide supports the setup steps, the Azure credential requirements (API key, endpoint URL, deployment name) and billing through the provider. The answer also says Dify credits back part of the customer's Azure spend as monthly bonus message credits. The guide says nothing like this, so it is an unsupported billing promise the customer could budget around."
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "ticket_id": "H01",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.030231400000000002,
+    "duration_ms": 6253,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4923,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1031,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1031,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How do I connect my own OpenAI API key to Dify?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Will using my own key avoid burning through the built-in (free trial) credits?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Go to Settings > Model Provider (or Marketplace filtered to Models) to connect a provider.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Go to **Settings \u2192 Model Provider**, or open the **Marketplace** and filter by \"Models.\""
+      },
+      {
+        "claim": "Install the OpenAI plugin if it isn't already added.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Install the plugin for the desired provider (OpenAI, Anthropic, Azure OpenAI, and others are published officially"
+      },
+      {
+        "claim": "Enter your OpenAI API key when prompted and save.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Enter the credentials the provider requires \u2014 typically an API key"
+      },
+      {
+        "claim": "Set it as the default model or per-app override under the app's Model settings.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "set that provider's model as the default (or per-app override) under the app's **Model** settings."
+      },
+      {
+        "claim": "Calls using OpenAI models are billed directly by OpenAI with your key.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "calls to that provider's models are billed directly by the provider"
+      },
+      {
+        "claim": "Each call still draws down your Dify message credits at the usual per-model rate.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "calls to that provider's models are billed directly by the provider and no longer draw down the workspace's Dify message credits."
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "The final sentence incorrectly tells the customer that their credits will still be consumed, which defeats the purpose of her question and could mislead her about billing."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "contradicts_guide",
+      "wrong_entitlement"
+    ],
+    "rationale": "The setup steps are accurate and match the guide. The last sentence contradicts the guide, which says own-key calls no longer draw down Dify message credits. That is the customer's main concern, and the error is about billing, so she could act on it wrongly (for example, by not bothering to connect her key or by expecting to be charged twice)."
+  }
+}

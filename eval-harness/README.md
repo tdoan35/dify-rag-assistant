@@ -8,11 +8,11 @@ The product guide is the only source of truth. No live assistant endpoint is use
 
 ```bash
 cd eval-harness
-python3 run_eval.py check-labels   # validate reviews/labels.csv against the ticket data
+python3 run_eval.py check-labels   # validate labels, expected actions and the held-out set
 python3 run_eval.py score          # rebuild everything in results/ from cached judge outputs
 ```
 
-Requirements: Python 3.10+ and the standard library only. Scoring needs no network access and no credentials. The LLM-judge outputs are cached in `results/judge_cache/`.
+Requirements: Python 3.10+ and the standard library only. Scoring needs no network access and no credentials. The LLM-judge outputs are cached in `results/judge_cache/` (the 26 tickets) and `results/heldout_judge_cache/` (the held-out set).
 
 ## Layout
 
@@ -27,8 +27,18 @@ Requirements: Python 3.10+ and the standard library only. Scoring needs no netwo
 | `harness/rules.py` | Deterministic input routing and output checks, each tagged `generic` or `regression`. |
 | `harness/stats.py` | Wilson intervals, confusion matrices, Cohen's kappa. |
 | `harness/report.py` | Scoring, guardrail replay, and report writer. |
+| `heldout/mutations.json`, `heldout/signoff.csv`, `heldout/MANIFEST.json` | Held-out fault-injection set: the injected edits, their human sign-off sheet, and the hashes of the rule code and judge prompt it was frozen against. |
+| `harness/heldout.py` | Renders, freezes and scores the held-out set. |
+| `reviews/actions.csv`, `harness/actions.py` | Expected action per ticket (answer / clarify / handoff), bounce labels, bounce detector, and routing-as-action scoring. |
+| `harness/intents.py` | Multi-intent detector and risk tiers for staging the rollout by intent instead of `category`. |
+| `kb/` , `harness/kb_check.py` | Proposed guide changes (`kb/README.md`) and a before/after retrieval check. |
+| `gates.json`, `harness/gates.py` | Escaped-rate targets (placeholders) and the gate arithmetic derived from them. |
+| `shadow/log_schema.json`, `harness/shadow.py` | Shadow-mode log contract for agent-assist, the analyzer behind the shadow gates, and the audit sampler. |
+| `harness/review_card.py` | Reviewer view for agent-assist (`results/review_cards.md`). |
+| `harness/additions.py` | Report sections 6–12. |
 | `results/summary.md` | The human-readable report. **Start here.** |
-| `results/*.csv`, `results/summary.json` | Per-ticket results, judge agreement, similarity sweep, and replay table. |
+| `results/review_cards.md` | What a support agent would see beside each draft: claim-level flags with guide evidence, riskiest first. |
+| `results/*.csv`, `results/summary.json`, `results/shadow_demo_log.jsonl` | Per-ticket results, judge agreement, similarity sweep, replay table, held-out cases, routing actions, intents, KB check, gates, and the synthetic shadow-mode demo log. |
 
 ## Method
 
@@ -59,6 +69,16 @@ Requirements: Python 3.10+ and the standard library only. Scoring needs no netwo
    | R-gen | Generic rules only. |
    | C3-gen / C3 | Recommended: routing, rules, and judge on every draft. |
 
+Added after the approach review (`../docs/additions.md`), as report sections 6–12:
+
+6. **Held-out fault-injection set.** 66 edited answers (45 release-blocking, 11 minor, 10 rewordings) score the frozen rules and judge on faults they were not built around. `check-labels` and the report warn if the rule code or judge prompt changes after the freeze.
+7. **Routing as an action.** Scores whether tickets that need a person are handed off by a decision, and whether drafts that bounce the customer ("contact support") would be auto-sent.
+8. **Staging by detected intent.** Compares rollout stages defined by `category` with stages defined by detected intents.
+9. **Knowledge-base check.** Ranks guide chunks for each failing ticket before and after the proposed guide changes.
+10. **Release gates.** Derives the recall and sample sizes each gate needs from the escaped-rate targets in `gates.json`.
+11. **Shadow mode.** Analyzes agent-assist logs into escaped-failure rates; the shipped log is a synthetic demo.
+12. **Reviewer view.** Writes `results/review_cards.md`.
+
 ## Re-running the LLM judge (optional)
 
 Cached outputs are reused; pass `--force` to regenerate.
@@ -82,6 +102,16 @@ That isolates the judge: it has no file access, no MCP servers, no project instr
 **Anthropic API backend:** run `pip install anthropic`, set `ANTHROPIC_API_KEY`, then add `--backend api`. It uses structured outputs (`output_config.format`) and records refusals as errors rather than falling back to another model.
 
 Cost and time: the full set (2 models × 2 runs × 26 tickets) cost about $3.64 and took about 10 minutes with 4 workers per model.
+
+**Held-out set:**
+
+```bash
+python3 run_eval.py judge --set heldout --model opus --runs 1 --workers 4
+python3 run_eval.py judge --set heldout --model sonnet --runs 1 --workers 4
+python3 run_eval.py score
+```
+
+One run per model over the 66 cases cost $6.18. If you change `harness/rules.py`, `harness/similarity.py` or the judge prompt, the held-out results stop measuring generalisation; the report says so. Write new held-out cases and re-freeze with `python3 run_eval.py heldout-freeze --author <name> --force`.
 
 Each cached record stores:
 - the prompt fingerprint (scoring refuses to mix outputs from different judge prompts);
@@ -107,3 +137,5 @@ To sign off, put your initials in `human_signoff`, or edit a label and re-run `p
 - **No retrieval logs.** Retrieved contexts weren't logged, so retrieval errors can't be separated from generation errors.
 - **Lexical, not semantic.** The tier-1 check is TF-IDF, a stand-in for a semantic similarity model.
 - **Same model family.** The reference-label draft and the judge both come from Claude. The process isolation and human sign-off mitigate this but don't remove it.
+- **Held-out author knew the rules.** The held-out cases were written by Claude after reading `harness/rules.py`; their severities await sign-off in `heldout/signoff.csv`. Injected faults are cleaner than natural ones, so held-out recall is an upper bound.
+- **Shadow mode is a demo.** `results/shadow_demo_log.jsonl` simulates reviewer actions from the reference labels; real gate evidence needs production shadow logs.

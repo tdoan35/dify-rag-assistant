@@ -1,0 +1,115 @@
+{
+  "ticket_id": "H01",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.06479480000000001,
+    "duration_ms": 10689,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4917,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1250,
+      "output_tokens_details": {
+        "thinking_tokens": 254
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1250,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "How do I connect my own OpenAI API key instead of using the built-in credits?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Will using my own key stop my free credits from being used up?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Go to Settings > Model Provider, or the Marketplace filtered to Models.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Go to **Settings \u2192 Model Provider**, or open the **Marketplace** and filter by \"Models.\""
+      },
+      {
+        "claim": "Install the OpenAI plugin if it isn't already added.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Install the plugin for the desired provider (OpenAI, Anthropic, Azure OpenAI, and others are published officially"
+      },
+      {
+        "claim": "Enter your OpenAI API key when prompted and save.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Enter the credentials the provider requires \u2014 typically an API key"
+      },
+      {
+        "claim": "Set it as the default model for your app, or override per app, under that app's Model settings.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "Save, then set that provider's model as the default (or per-app override) under the app's **Model** settings."
+      },
+      {
+        "claim": "Calls using OpenAI models are billed directly by OpenAI with your key.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "calls to that provider's models are billed directly by the provider"
+      },
+      {
+        "claim": "Each call still draws down your Dify message credits at the usual per-model rate.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "and no longer draw down the workspace's Dify message credits"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "contradicts_guide",
+      "wrong_entitlement"
+    ],
+    "rationale": "The setup steps are correct and match the guide. However, the answer says calls made with the customer's own key still use up Dify message credits. The guide says the opposite: once a workspace uses its own key, those calls \"no longer draw down the workspace's Dify message credits.\" This billing error goes against the exact reason the customer is asking, and it could lead them to drop the key setup and keep using up their free credits, which never reset."
+  }
+}

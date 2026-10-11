@@ -1,0 +1,118 @@
+{
+  "ticket_id": "H59",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.030965400000000004,
+    "duration_ms": 6027,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4934,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1100,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1100,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What settings on the retrieval node control how much context is returned (too much vs. almost nothing)?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Why does retrieval sometimes return almost nothing?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "top_k sets the maximum number of chunks returned by the retrieval node.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "**top_k** (how many chunks to return)"
+      },
+      {
+        "claim": "The score threshold, if enabled, discards any chunk scoring below the cutoff even if it would otherwise be within top_k.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "an optional **score threshold** (chunks scoring below it are discarded even if they would otherwise be in the top_k)"
+      },
+      {
+        "claim": "To reduce excess context, lower top_k or raise the score threshold.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "**top_k** (how many chunks to return), an optional **score threshold** (chunks scoring below it are discarded"
+      },
+      {
+        "claim": "Getting almost nothing back is usually caused by the model provider throttling embedding calls.",
+        "claim_type": "diagnostic",
+        "verdict": "contradicted",
+        "guide_evidence": "most often explained by the score threshold being set too high, the document still being mid-indexing, or the query simply not matching any ingested content \u2014 not by an account or provider-propagation delay."
+      },
+      {
+        "claim": "The provider throttling clears up on its own after a few hours.",
+        "claim_type": "diagnostic",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Hit Testing on the dataset lets you try different queries and see actual scores before tuning.",
+        "claim_type": "procedural",
+        "verdict": "supported",
+        "guide_evidence": "the **Hit Testing** / retrieval-test panel on the dataset page lets a builder type a sample query and see exactly which chunks would be retrieved and their similarity scores"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Gives a false root cause (provider throttling) for empty retrievals and tells the customer to wait hours for it to clear, which the guide explicitly rules out."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_root_cause",
+      "contradicts_guide",
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The answer correctly explains top_k, score threshold and Hit Testing. But it blames empty retrievals on provider throttling that clears in hours, which the guide explicitly rules out. It omits the real causes (threshold too high, mid-indexing, non-matching query), so the customer could wait for a fix that won't come."
+  }
+}

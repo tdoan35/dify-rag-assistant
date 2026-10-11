@@ -1,0 +1,111 @@
+{
+  "ticket_id": "H56",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.045010100000000004,
+    "duration_ms": 12092,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 6000,
+      "cache_read_input_tokens": 9421,
+      "output_tokens": 2006,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6000,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1013,
+          "cache_read_input_tokens": 7167,
+          "cache_creation_input_tokens": 1087,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1087
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What happens once the Sandbox workspace's 200 credits run out?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Does the app just stop working when credits run out?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Model calls relying on Dify-hosted credits stop working once the 200 one-time Sandbox credits are used up.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Once a workspace's credits are used up, model calls on Dify-hosted credits stop working until the workspace either connects its own API key for that provider or waits for the next monthly credit reset (paid plans)"
+      },
+      {
+        "claim": "Sandbox credits do not reset, unlike on a paid plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Sandbox credits do not reset."
+      },
+      {
+        "claim": "Connecting your own API key for a provider lets the app keep running, with calls billed directly by that provider instead of Dify credits.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "calls to that provider's models are billed directly by the provider and no longer draw down the workspace's Dify message credits."
+      },
+      {
+        "claim": "Upgrading to Professional gives 5,000 credits per month that renew each billing cycle.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "| Professional | $59/workspace/month ($590/year) | 5,000 credits/month |"
+      },
+      {
+        "claim": "You'll see an in-app banner when you're down to your last 20 credits.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "States a fabricated in-app low-credit banner at 20 credits that the guide does not mention; the customer may rely on a warning that does not exist."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "unsupported_technical_detail",
+      "overstatement"
+    ],
+    "rationale": "The answer correctly explains that Dify-hosted model calls stop, that Sandbox credits don't reset, and the options of bringing your own key or upgrading to Professional. It also invents an in-app banner at 20 remaining credits, which the guide never mentions. The customer might count on that warning to avoid an outage, so this is an overconfident capability statement and a major issue, not a harmless detail."
+  }
+}

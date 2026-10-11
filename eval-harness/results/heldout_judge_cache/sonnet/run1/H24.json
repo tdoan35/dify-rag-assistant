@@ -1,0 +1,97 @@
+{
+  "ticket_id": "H24",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.027247399999999998,
+    "duration_ms": 5003,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4837,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 767,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Can the Team subscription be paid by invoice or bank transfer instead of credit card?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Invoice and bank transfer are available for annual Team subscriptions.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "paying by invoice or bank transfer is still being evaluated by Dify and, if it ships, is expected to be limited to annual Team subscriptions only \u2014 it is not available on any plan today."
+      },
+      {
+        "claim": "Switching the workspace to annual billing on the Billing page is how to get invoice payment.",
+        "claim_type": "procedural",
+        "verdict": "contradicted",
+        "guide_evidence": "it is not available on any plan today."
+      },
+      {
+        "claim": "Invoice can be chosen as the payment method at checkout.",
+        "claim_type": "procedural",
+        "verdict": "contradicted",
+        "guide_evidence": "Payment is by credit card by default; paying by invoice or bank transfer ... is not available on any plan today."
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "Tells the customer a payment method is available when the guide says it is not available on any plan today, and describes a checkout option that doesn't exist."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "wrong_entitlement",
+      "contradicts_guide",
+      "unsupported_commercial_claim",
+      "fabricated_ui_path",
+      "missed_premise_correction"
+    ],
+    "rationale": "The guide says invoice and bank transfer are not available on any plan today. They are only being evaluated, and if they ship they would apply to annual Team subscriptions only. The answer presents this as available and invents a checkout step. Finance could plan a purchase around a payment method that doesn't exist."
+  }
+}

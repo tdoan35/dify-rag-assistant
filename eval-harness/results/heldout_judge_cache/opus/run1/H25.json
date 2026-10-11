@@ -1,0 +1,111 @@
+{
+  "ticket_id": "H25",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0634508,
+    "duration_ms": 10191,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4909,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1186,
+      "output_tokens_details": {
+        "thinking_tokens": 277
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4909,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1186,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4909
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Can the finance team pay for a Team subscription by invoice or bank transfer instead of credit card?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Credit card is the only payment method available today on any Cloud plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Payment is by credit card by default; paying by invoice or bank transfer ... is not available on any plan today."
+      },
+      {
+        "claim": "Dify is exploring a pay-by-invoice / bank transfer option.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "paying by invoice or bank transfer is still being evaluated by Dify"
+      },
+      {
+        "claim": "If it ships, invoice/bank transfer is expected to apply only to annual Professional subscriptions.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "if it ships, is expected to be limited to annual Team subscriptions only"
+      },
+      {
+        "claim": "Invoice/bank transfer is not available currently.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "it is not available on any plan today"
+      },
+      {
+        "claim": "Checking the Billing page periodically is a way to find out if invoice payment becomes available.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Reaching out to Dify's sales team is an option if invoicing is a hard requirement now.",
+        "claim_type": "commercial",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "contradicts_guide",
+      "wrong_entitlement",
+      "unsupported_commercial_claim"
+    ],
+    "rationale": "The answer is right that invoice and bank-transfer payment isn't available today. But it says the planned option will be limited to annual Professional subscriptions, and the guide says annual Team subscriptions. This billing error could lead a Team customer to give up on invoicing or move to the wrong plan. The suggestions to check the Billing page and contact sales also don't come from the guide."
+  }
+}

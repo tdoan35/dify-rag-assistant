@@ -1,0 +1,113 @@
+{
+  "ticket_id": "H39",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.030783400000000002,
+    "duration_ms": 6389,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4941,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1079,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1079,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why did the credit balance drop faster this week despite no change in usage?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Credits aren't charged at a flat rate per response; consumption depends on the model used.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Message credits are not consumed at a flat rate. Each model response is metered in credits according to the specific model used"
+      },
+      {
+        "claim": "Lighter models cost as little as 1 credit per response, mid-tier around 5, and heavier/multimodal models (transcription, TTS, flagship chat) around 10 credits per response.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "lighter models (for example smaller GPT variants) consume as little as 1 credit per response, mid-tier models around 5 credits, and larger or multimodal models (audio transcription, text-to-speech, flagship chat models) around 10 credits per response."
+      },
+      {
+        "claim": "A shift in the mix of models called, even slight, can cause faster credit burn.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "Ingrid's team switched the app over to a flagship chat model this week.",
+        "claim_type": "customer_context",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "The switch to a flagship chat model alone explains the faster credit burn without any change in request volume.",
+        "claim_type": "diagnostic",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Checking usage logs for which model handled the most requests this week should confirm the cause.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "States as fact that the customer's team switched to a flagship chat model, which contradicts the ticket (customer says nothing changed) and has no basis in the ticket or guide."
+    ],
+    "severity": "major",
+    "failure_modes": [
+      "invented_user_context",
+      "wrong_root_cause",
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The general explanation of per-model credit metering is well grounded in the guide. But the answer invents that the customer's team switched to a flagship chat model and presents that as the definitive root cause, which the ticket contradicts and the guide doesn't support. It also points to \"usage logs\", which the guide never mentions. The root-cause claim is a fabricated assumption that could mislead the customer, so it is not safe to send as written."
+  }
+}

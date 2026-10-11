@@ -1,0 +1,27 @@
+id,expected_action,expected_queue,draft_bounces,bounce_detector,judge_should_route,c3gen_action,c3gen_outcome,proposed_action,proposed_outcome
+TCK-1001,answer,,0,,0,auto_send,auto-sent (non-blocking issue),auto_send,auto-sent (non-blocking issue)
+TCK-1002,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1003,clarify,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1004,answer,,0,,0,auto_send,auto-sent (non-blocking issue),auto_send,auto-sent (non-blocking issue)
+TCK-1005,answer,,0,,0,hold_for_agent,flawed draft held (judge blocks),hold_for_agent,flawed draft held (judge blocks)
+TCK-1006,answer+handoff,sales_enterprise,0,,1,handoff:sales_enterprise,routed to the right queue,handoff:sales_enterprise,routed to the right queue
+TCK-1007,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1008,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1009,handoff,sales_enterprise,0,,1,handoff:sales_enterprise,routed to the right queue,handoff:sales_enterprise,routed to the right queue
+TCK-1010,answer,,0,,0,handoff:support_agent,good draft held (route_multi_part),handoff:support_agent,good draft held (route_multi_part)
+TCK-1011,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1012,answer+handoff,technical_specialist,0,,1,hold_for_agent,"reached a person via a hold, not a routing decision",handoff:specialist,routed to the right queue
+TCK-1013,answer,,0,'reaching out to Dify's sales',0,auto_send,auto-sent,hold_for_agent,good draft held (bounce 'reaching out to Dify's sales')
+TCK-1014,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1015,answer,,1,'reach out to billing',0,handoff:support_agent,flawed draft held (route_multi_part),handoff:support_agent,flawed draft held (route_multi_part)
+TCK-1016,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1017,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1018,handoff,sales_enterprise,1,'contacting Dify's sales',1,handoff:sales_enterprise,routed to the right queue,handoff:sales_enterprise,routed to the right queue
+TCK-1019,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1020,answer,,0,,0,auto_send,auto-sent (non-blocking issue),auto_send,auto-sent (non-blocking issue)
+TCK-1021,answer,,0,,0,handoff:support_agent,flawed draft held (route_multi_part),handoff:support_agent,flawed draft held (route_multi_part)
+TCK-1022,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1023,handoff,support_agent,1,'resubmit',1,handoff:support_agent,routed to the right queue,handoff:support_agent,routed to the right queue
+TCK-1024,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1025,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent
+TCK-1026,answer,,0,,0,auto_send,auto-sent,auto_send,auto-sent

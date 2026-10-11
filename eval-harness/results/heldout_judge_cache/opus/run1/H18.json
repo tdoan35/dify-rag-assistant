@@ -1,0 +1,122 @@
+{
+  "ticket_id": "H18",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0662788,
+    "duration_ms": 10244,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4935,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1317,
+      "output_tokens_details": {
+        "thinking_tokens": 227
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4935,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1317,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4935,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4935
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "What is the difference between Economical and High Quality indexing when setting up a dataset?",
+        "addressed": true,
+        "guide_coverage": "full"
+      },
+      {
+        "question": "Does it matter which indexing technique I pick?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "The choice matters mainly for cost and retrieval quality.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Economical indexing is keyword-based.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Economical (keyword-based index, free, does not count against the workspace's Knowledge Data Storage quota)"
+      },
+      {
+        "claim": "Economical indexing counts against the plan's Knowledge Data Storage quota just like High Quality does.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "Economical (keyword-based index, free, does not count against the workspace's Knowledge Data Storage quota)"
+      },
+      {
+        "claim": "High Quality indexing uses vector embeddings through the workspace's embedding model.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "High Quality (vector embeddings via the workspace's embedding model"
+      },
+      {
+        "claim": "High Quality indexing generally gives better semantic retrieval.",
+        "claim_type": "technical",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "High Quality indexing consumes the Knowledge Data Storage allowance and stops accepting new documents once the quota is full.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "which does count against the plan's Knowledge Data Storage quota and stops accepting new documents once that quota is full"
+      },
+      {
+        "claim": "Sandbox and Professional users expecting a large knowledge base should watch storage usage if choosing High Quality.",
+        "claim_type": "customer_context",
+        "verdict": "supported",
+        "guide_evidence": "Sandbox ... 50 MB ... Professional ... 5 GB"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "contradicts_guide",
+      "wrong_entitlement",
+      "unsupported_technical_detail"
+    ],
+    "rationale": "The answer says Economical indexing counts against the Knowledge Data Storage quota. The guide says the opposite: Economical is free and does not count against that quota. This hides the main cost difference, so the customer could skip the option that saves quota, run out of storage, or upgrade their plan when they don't need to. Separately, the guide doesn't say that High Quality \"generally gives better semantic retrieval\", so that claim is unsupported."
+  }
+}

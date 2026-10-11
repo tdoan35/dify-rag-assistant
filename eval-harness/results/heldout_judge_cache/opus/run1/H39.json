@@ -1,0 +1,126 @@
+{
+  "ticket_id": "H39",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.0737228,
+    "duration_ms": 14968,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4933,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1690,
+      "output_tokens_details": {
+        "thinking_tokens": 588
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1690,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why did my credit balance drop faster this week even though I didn't change how I use the app?",
+        "addressed": true,
+        "guide_coverage": "partial"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Credits are not charged at a flat rate per response.",
+        "claim_type": "technical",
+        "verdict": "supported",
+        "guide_evidence": "Message credits are not consumed at a flat rate."
+      },
+      {
+        "claim": "Lighter models can cost as little as 1 credit per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "lighter models (for example smaller GPT variants) consume as little as 1 credit per response"
+      },
+      {
+        "claim": "Mid-tier models cost around 5 credits per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "mid-tier models around 5 credits"
+      },
+      {
+        "claim": "Heavier or multimodal models (transcription, text-to-speech, flagship chat models) cost around 10 credits per response.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "larger or multimodal models (audio transcription, text-to-speech, flagship chat models) around 10 credits per response"
+      },
+      {
+        "claim": "A shift in the mix of models called can make credits drain faster.",
+        "claim_type": "diagnostic",
+        "verdict": "supported",
+        "guide_evidence": "A workspace that mostly uses a heavier model will exhaust its credit balance noticeably faster than the headline credit number suggests."
+      },
+      {
+        "claim": "The customer's team switched the app over to a flagship chat model this week.",
+        "claim_type": "customer_context",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "That model switch alone explains the faster credit burn.",
+        "claim_type": "diagnostic",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      },
+      {
+        "claim": "Usage logs show which model handled the most requests and can confirm the cause.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "appropriate"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "States as fact that the customer's team switched to a flagship model, which contradicts the customer's own statement that nothing changed"
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "invented_user_context",
+      "wrong_root_cause",
+      "no_clarification",
+      "fabricated_ui_path"
+    ],
+    "rationale": "The answer is right that credits are metered per model, with rates of about 1, 5 and 10 credits per response. However, it says as fact that Ingrid's team switched to a flagship model this week. That cause is made up, it contradicts her statement that nothing changed, and she could act on it by chasing a switch that never happened. It also points her to 'usage logs', which the guide never mentions, when it should have asked what changed or which models she uses."
+  }
+}

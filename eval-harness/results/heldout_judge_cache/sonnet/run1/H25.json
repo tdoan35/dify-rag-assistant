@@ -1,0 +1,113 @@
+{
+  "ticket_id": "H25",
+  "model": "sonnet",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-sonnet-5-5",
+    "models_used": [
+      "claude-sonnet-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.030229400000000003,
+    "duration_ms": 6354,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4915,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 1034,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1034,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Can the Team subscription be paid by invoice or bank transfer instead of credit card?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "Credit card is the only payment method available today on any Cloud plan.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "Payment is by credit card by default; paying by invoice or bank transfer ... is not available on any plan today."
+      },
+      {
+        "claim": "Dify is exploring a pay-by-invoice / bank transfer option.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "paying by invoice or bank transfer is still being evaluated by Dify"
+      },
+      {
+        "claim": "If it ships, the invoice option is expected to apply only to annual Professional subscriptions.",
+        "claim_type": "commercial",
+        "verdict": "contradicted",
+        "guide_evidence": "if it ships, is expected to be limited to annual Team subscriptions only"
+      },
+      {
+        "claim": "The invoice option isn't available currently.",
+        "claim_type": "commercial",
+        "verdict": "supported",
+        "guide_evidence": "it is not available on any plan today."
+      },
+      {
+        "claim": "Customer can check the Billing page periodically for the option.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "Only the workspace **owner** and **admins** can open the Billing page and manage a subscription."
+      },
+      {
+        "claim": "Customer can reach out to Dify's sales team directly if an invoice option is a hard requirement.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": "Enterprise pricing and feature scope are negotiated directly with Dify's sales team rather than published"
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [
+      "States the future invoice option would apply only to annual Professional subscriptions, which contradicts the guide (Team). This could mislead a Team-plan finance buyer into thinking they would never be eligible, or into choosing the wrong plan."
+    ],
+    "severity": "critical",
+    "failure_modes": [
+      "contradicts_guide",
+      "wrong_entitlement",
+      "unsupported_commercial_claim"
+    ],
+    "rationale": "The answer correctly says invoice and bank transfer aren't available today. It then wrongly says the possible future option would cover annual Professional subscriptions, but the guide says annual Team subscriptions only. This is a contradicted plan-entitlement claim that the customer, who asked about Team, could act on when choosing a plan. The suggestion to contact sales is also mildly unsupported."
+  }
+}

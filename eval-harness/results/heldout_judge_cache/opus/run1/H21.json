@@ -1,0 +1,100 @@
+{
+  "ticket_id": "H21",
+  "model": "opus",
+  "run": 1,
+  "prompt_fingerprint": "81e24a80cf1e9455",
+  "meta": {
+    "backend": "claude-cli",
+    "cli_version": "2.1.296 (Claude Code)",
+    "requested_model": "claude-opus-5-5",
+    "models_used": [
+      "claude-opus-5-5"
+    ],
+    "effort": "high",
+    "cost_usd": 0.056862800000000005,
+    "duration_ms": 7213,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 4858,
+      "cache_read_input_tokens": 2254,
+      "output_tokens": 877,
+      "output_tokens_details": {
+        "thinking_tokens": 37
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 877,
+          "cache_read_input_tokens": 2254,
+          "cache_creation_input_tokens": 4858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard",
+      "fallback_credit": null
+    }
+  },
+  "evaluation": {
+    "sub_questions": [
+      {
+        "question": "Why does the dataset API return 401 Unauthorized when the same key works for the chatbot app?",
+        "addressed": true,
+        "guide_coverage": "full"
+      }
+    ],
+    "claims": [
+      {
+        "claim": "App API keys work for the dataset API as long as the app and dataset are in the same workspace.",
+        "claim_type": "technical",
+        "verdict": "contradicted",
+        "guide_evidence": "A dataset key will not authenticate a request to an app endpoint, and an app key will not authenticate a dataset-API request."
+      },
+      {
+        "claim": "The customer's key itself is fine for this request.",
+        "claim_type": "customer_context",
+        "verdict": "contradicted",
+        "guide_evidence": "Dify issues two different kinds of API keys, and they are **not interchangeable**"
+      },
+      {
+        "claim": "The 401 is almost always caused by the key being pasted with surrounding whitespace.",
+        "claim_type": "diagnostic",
+        "verdict": "contradicted",
+        "guide_evidence": "A fresh key that returns a `401 Unauthorized` almost always means one of: the wrong key type was used for the endpoint being called (app key vs. dataset key), the key was pasted with surrounding whitespace..."
+      },
+      {
+        "claim": "Stripping spaces around the key and retrying will resolve the upload failure.",
+        "claim_type": "procedural",
+        "verdict": "unsupported",
+        "guide_evidence": ""
+      }
+    ],
+    "escalation": {
+      "should_route_to_human": false,
+      "assessment": "not_applicable"
+    },
+    "customer_safe": false,
+    "customer_safety_issues": [],
+    "severity": "critical",
+    "failure_modes": [
+      "contradicts_guide",
+      "wrong_root_cause",
+      "missed_premise_correction",
+      "invented_user_context"
+    ],
+    "rationale": "This answer should not be sent. It tells Sam that app API keys also work for the dataset API, but the guide says the two key types are \"not interchangeable.\" Sam's own details point to the likely cause: an app key used on a dataset endpoint, when a dataset key from the dataset's Service API panel is needed. Instead, the answer blames whitespace, so Sam would follow a fix that won't work."
+  }
+}
